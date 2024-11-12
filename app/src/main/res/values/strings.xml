@@ -1,15 +1,64 @@
 <resources>
-    <string name="app_name">Uniq Coffee</string>
+    <string name="app_name" translatable="false">Uniq Coffee</string>
+
 
     <string name="welcome_back">Welcome Back,</string>
     <string name="stamp_card">Stamp card</string>
     <string name="settings">Settings</string>
     <string name="order">Order</string>"
 
+
     <string name="select_coffee">Select Coffee</string>
+    <!-- Coffee Types -->
+    <string name="espresso">Espresso</string>
+    <string name="espresso_description">Finely grounded up coffee beans compressed into a puck and water brewed through it</string>
 
     <string name="latte">Latte</string>
     <string name="latte_description">Latte is made of an espresso shot and steamed milk with a small amount of frothed milk foam on top</string>
 
+    <string name="cappuccino">Cappuccino</string>
+    <string name="cappuccino_description">Cappuccino is similar to a latte, but with a thicker layer of foamed milk</string>
 
+    <string name="americano">Americano</string>
+    <string name="americano_description">Americano is made with hot water and espresso</string>
+
+    <string name="macchiato">Macchiato</string>
+    <string name="macchiato_description">Macchiato is an espresso with a small amount of foamed milk</string>
+
+    <string name="mocha">Mocha</string>
+    <string name="mocha_description">Mocha is a latte with chocolate flavoring or syrup added</string>
+
+    <!-- Other Drinks -->
+    <string name="hot_chocolate">Hot Chocolate</string>
+    <string name="hot_chocolate_description">A warm, comforting drink made with cocoa powder, milk, and sugar</string>
+
+    <string name="tea">Tea</string>
+    <string name="tea_description">A beverage made by infusing the dried leaves of the tea plant in hot water</string>
+
+    <string name="decaf_tea">Decaf Tea</string>
+    <string name="decaf_tea_description">Tea that has had most of its caffeine removed</string>
+
+
+    <string name="kcal">Kcal</string>
+    <string name="milk_type">Milk Type</string>
+
+    <string name="milk_semi">Semi-Skimmed Milk</string>
+    <string name="milk_skimmed">Skimmed Milk</string>
+    <string name="milk_whole">Whole Milk</string>
+    <string name="milk_oat">Oat Milk</string>
+    <string name="milk_none">No Milk</string>
+
+    <string name="add_to_cart">Add to Cart</string>
+
+
+    <string name="payment">Payment</string>
+    <string name="card">Card</string>
+    <string name="card_name">Name on Card</string>
+    <string name="card_number">Card Number</string>
+    <string name="card_expirery">Expirery Date</string>
+    <string name="card_cvv">CVV</string>
+
+
+    <string name="thank_you">Thank You</string>
+    <string name="being_made">Your order is being now made</string>
 </resources>
