@@ -19,6 +19,9 @@
     <string name="cappuccino">Cappuccino</string>
     <string name="cappuccino_description">Cappuccino is similar to a latte, but with a thicker layer of foamed milk</string>
 
+    <string name="flat_white">Flat White</string>
+    <string name="flat_white_description">Flat white is a coffee drink made with espresso and less steamed milk than a latte</string>
+
     <string name="americano">Americano</string>
     <string name="americano_description">Americano is made with hot water and espresso</string>
 
