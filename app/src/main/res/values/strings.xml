@@ -44,6 +44,7 @@
 
 
     <string name="kcal">Kcal</string>
+    <string name="kcal_info">This is a rough approximation of the amount of calories in the drink, different milk type will have different amounts of calories</string>
     <string name="milk_type">Milk Type</string>
 
     <string name="milk_semi">Semi-Skimmed Milk</string>
