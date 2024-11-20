@@ -6,6 +6,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
@@ -66,7 +67,7 @@ fun CoffeeButton(
 
 @Composable
 fun HiddenDetailsBox(
-    expanded: Boolean = true,
+    expanded: Boolean = false,
     onClick: () -> Unit = {},
     @StringRes title: Int,
     @StringRes type: Int,
@@ -91,17 +92,14 @@ fun HiddenDetailsBox(
                     } else {
                         Text("$type")
                     }
-                    FilledTonalButton(
-                        onClick = onClick,
-                        shape = MaterialTheme.shapes.extraSmall,
-                    ) {
-                        if (expanded) {
-                            Icon(Icons.Filled.KeyboardArrowUp, contentDescription = null)
-                        } else {
-                            Icon(Icons.Filled.KeyboardArrowDown, contentDescription = null)
-                        }
+
+                    if (expanded) {
+                        Icon(Icons.Filled.KeyboardArrowUp, contentDescription = null, modifier = Modifier.clickable( onClick = {!expanded}))
+                    } else {
+                        Icon(Icons.Filled.KeyboardArrowDown, contentDescription = null, modifier = Modifier.clickable( onClick = {!expanded}))
                     }
                 }
+
                 if (expanded) {
                     Text(stringResource(description))
 
@@ -115,7 +113,7 @@ fun HiddenDetailsBox(
 @Composable
 fun CommonViewsPreview(){
     HiddenDetailsBox(
-        false,
+        true,
     onClick = {},
     R.string.milk_type,
     R.string.milk_semi,
