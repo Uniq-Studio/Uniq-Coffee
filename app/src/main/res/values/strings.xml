@@ -42,6 +42,8 @@
     <string name="decaf_tea">Decaf Tea</string>
     <string name="decaf_tea_description">Tea that has had most of its caffeine removed</string>
 
+    <string name="coffee_details">Coffee Details</string>
+
 
     <string name="kcal">Kcal</string>
     <string name="kcal_info">This is a rough approximation of the amount of calories in the drink, different milk type will have different amounts of calories</string>

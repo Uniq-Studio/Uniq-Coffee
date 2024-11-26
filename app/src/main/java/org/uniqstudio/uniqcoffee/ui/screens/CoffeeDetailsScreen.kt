@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
@@ -18,7 +19,8 @@ fun CoffeeDetailsScreen(
     @DrawableRes image: Int,
     @StringRes description: Int,
     @StringRes milkType: Int,
-    kcal: Int
+    kcal: Int,
+    onClick: () -> Unit
 ){
     Column() {
         HeaderText(title)
@@ -41,7 +43,12 @@ fun CoffeeDetailsScreen(
             true,
             R.string.kcal_info
         )
+        Button(onClick = onClick) {
+            Text("Add to Cart")
+        }
     }
+
+
 
 
 }
@@ -55,7 +62,8 @@ fun CoffeeDetailsScreenPreview(){
             R.drawable.espresso,
             R.string.espresso_description,
             R.string.milk_semi,
-            95
+            95,
+            {}
         )
 }
 

@@ -22,19 +22,21 @@ import org.uniqstudio.uniqcoffee.data.CoffeeDataSource
 import org.uniqstudio.uniqcoffee.model.Coffee
 
 @Composable
-fun CoffeeSelectionApp() {
-    CoffeeSelectionScreen(CoffeeDataSource().loadCoffee())
+fun CoffeeSelectionApp(onClick: () -> Unit) {
+    CoffeeSelectionScreen(CoffeeDataSource().loadCoffee(),
+        onClick = onClick)
 }
 
 @Composable
-fun CoffeeSelectionScreen( coffeeList: List<Coffee>
+fun CoffeeSelectionScreen( coffeeList: List<Coffee>,
+                           onClick: () -> Unit
 ){
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier.fillMaxSize()
     ) {
         items(coffeeList) {
-            coffee -> CoffeeCard(coffee, modifier = Modifier.size(100.dp))
+            coffee -> CoffeeCard(coffee, onClick = onClick, modifier = Modifier.size(100.dp))
         }
     }
 }
