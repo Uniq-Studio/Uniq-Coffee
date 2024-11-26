@@ -57,7 +57,6 @@
 
     <string name="add_to_cart">Add to Cart</string>
 
-
     <string name="payment">Payment</string>
     <string name="card">Card</string>
     <string name="card_name">Name on Card</string>
@@ -68,4 +67,6 @@
 
     <string name="thank_you">Thank You</string>
     <string name="being_made">Your order is being now made</string>
+
+    <string name="back">Go Back to the Home Screen</string>
 </resources>

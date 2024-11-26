@@ -13,6 +13,7 @@ enum class UniqCoffeeScreen(@StringRes val title: Int){
     Selection(R.string.select_coffee),
     Details(R.string.coffee_details),
     CheckOut(R.string.payment),
+    Complete(R.string.thank_you)
 }
 
 @Composable
@@ -66,9 +67,21 @@ fun UniqCoffeeApp(
                 R.drawable.espresso,
                 R.string.espresso,
                 R.string.espresso_description,
-                2.99
+                2.99,
+                {
+                    navController.navigate(UniqCoffeeScreen.Complete.name)
+                }
             )
-
         }
+
+        composable(route = UniqCoffeeScreen.Complete.name) {
+            OrderCompletedView(
+                R.string.thank_you,
+                R.string.being_made,
+                {
+                    navController.navigate(UniqCoffeeScreen.Start.name)
+                })
+        }
+
     }
 }

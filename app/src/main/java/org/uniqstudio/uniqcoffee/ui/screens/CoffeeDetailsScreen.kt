@@ -43,14 +43,8 @@ fun CoffeeDetailsScreen(
             true,
             R.string.kcal_info
         )
-        Button(onClick = onClick) {
-            Text("Add to Cart")
-        }
     }
-
-
-
-
+    BottomBarButton(R.string.add_to_cart, onClick)
 }
 
 @Preview

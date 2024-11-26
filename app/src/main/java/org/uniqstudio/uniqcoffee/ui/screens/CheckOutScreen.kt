@@ -25,22 +25,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SelectedCoffeeCard(@DrawableRes image: Int, @StringRes title: Int, @StringRes description: Int, price: Double){
-    Card(){
-        Row() {
-            Image(painter = painterResource(image), contentDescription = stringResource(title), modifier = Modifier.size(100.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text(stringResource(title))
-                Text(stringResource(description))
+fun SelectedCoffeeCard(@DrawableRes image: Int, @StringRes title: Int, @StringRes description: Int, price: Double, onClick: () -> Unit) {
+    Column() {
+        Card() {
+            Row() {
+                Image(
+                    painter = painterResource(image),
+                    contentDescription = stringResource(title),
+                    modifier = Modifier.size(100.dp)
+                )
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(stringResource(title))
+                    Text(stringResource(description))
+                }
+                Text("$$price")
             }
-            Text("$$price")
         }
+        FakeCardEntryPanel(onClick)
     }
 }
 
+
 @Composable
 fun FakeCardEntryPanel(onClick: () -> Unit){
-    val expanded = false
+    val expanded = true
     Card() {
         Column(
             modifier = Modifier
