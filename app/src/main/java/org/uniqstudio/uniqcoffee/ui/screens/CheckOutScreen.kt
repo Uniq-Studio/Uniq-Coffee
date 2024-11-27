@@ -94,6 +94,7 @@ fun FakeCardEntryPanel(onClick: () -> Unit) {
                     )
             ) {
                 Row() {
+                    Spacer(modifier = Modifier.padding(5.dp))
                     TextBoxed(R.string.card_number, true, 20)
                     Spacer(modifier = Modifier.weight(1f))
                     Icon(

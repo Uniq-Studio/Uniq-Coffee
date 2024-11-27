@@ -240,7 +240,7 @@ fun BottomBarButton(@StringRes text: Int, onClick: () -> Unit){
             modifier = Modifier.fillMaxWidth()
                 .height(75.dp)
         ) {
-            TextBoxed(text, true, 25)
+            TextBoxed(text, true, 20)
         }
     }
 }
