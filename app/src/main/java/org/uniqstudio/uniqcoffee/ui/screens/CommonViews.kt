@@ -1,6 +1,6 @@
 package org.uniqstudio.uniqcoffee.ui.screens
 
-import android.R.attr.textSize
+
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.animateContentSize
@@ -14,9 +14,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -24,6 +24,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,6 +36,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -169,6 +172,62 @@ fun HiddenDetailsBox(
         }
     }
 
+
+@Composable
+fun InputField(@StringRes text: Int, size: Int, justNumbers: Boolean){
+    var keyboardType: KeyboardType
+    if (justNumbers){
+        keyboardType = KeyboardType.Number
+    } else {
+        keyboardType = KeyboardType.Text
+    }
+    var inputtedText by remember { mutableStateOf("") }
+    OutlinedTextField(
+        value = inputtedText,
+        onValueChange = {inputtedText = it},
+        label = { Text(stringResource(text)) },
+        singleLine = true,
+        keyboardOptions = (KeyboardOptions.Default.copy(
+            keyboardType = keyboardType,
+            imeAction = ImeAction.Next)),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(size.dp)
+    )
+}
+
+@Composable
+fun InputFieldRow(@StringRes expiryDate: Int,@StringRes cvvText: Int, size: Int){
+    var inputtedText1 by remember { mutableStateOf("") }
+    var inputtedText2 by remember { mutableStateOf("") }
+    Row {
+        OutlinedTextField(
+            value = inputtedText1,
+            onValueChange = {inputtedText1 = it},
+            label = { Text(stringResource(expiryDate)) },
+            singleLine = true,
+            keyboardOptions = (KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Next)),
+            modifier = Modifier
+                .weight(1f)
+                .padding(size.dp),
+        )
+        OutlinedTextField(
+            value = inputtedText2,
+            onValueChange = {inputtedText2 = it},
+            label = { Text(stringResource(cvvText)) },
+            singleLine = true,
+            keyboardOptions = (KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done)),
+            modifier = Modifier
+                .weight(1f)
+                .padding(size.dp)
+        )
+    }
+}
+
 @Composable
 fun BottomBarButton(@StringRes text: Int, onClick: () -> Unit){
     Box(
@@ -201,6 +260,12 @@ fun DescriptionTextPreview(){
 
 @Preview
 @Composable
+fun TextBoxedPreview(){
+    TextBoxed(R.string.espresso, true, 20)
+}
+
+@Preview
+@Composable
 fun CoffeeButtonPreview(){
     CoffeeButton(R.drawable.espresso, R.string.espresso, {})
 }
@@ -209,6 +274,18 @@ fun CoffeeButtonPreview(){
 @Composable
 fun HiddenDetailsBoxPreview(){
     HiddenDetailsBox(R.string.milk_type, R.string.milk_semi, false, R.string.milk_semi)
+}
+
+@Preview
+@Composable
+fun InputFieldPreview(){
+    InputField(R.string.card_number, 5, true)
+}
+
+@Preview
+@Composable
+fun InputFieldRowPreview(){
+    InputFieldRow(R.string.card_expirery, R.string.card_cvv, 6)
 }
 
 @Preview

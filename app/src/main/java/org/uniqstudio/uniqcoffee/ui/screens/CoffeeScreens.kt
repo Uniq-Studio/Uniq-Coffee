@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.uniqstudio.uniqcoffee.R
 
+
 enum class UniqCoffeeScreen(@StringRes val title: Int){
     Start(R.string.app_name),
     Selection(R.string.select_coffee),
@@ -63,16 +64,15 @@ fun UniqCoffeeApp(
         }
 
         composable(route = UniqCoffeeScreen.CheckOut.name) {
-            SelectedCoffeeCard(
-                R.drawable.espresso,
-                R.string.espresso,
-                R.string.espresso_description,
-                2.99,
-                {
-                    navController.navigate(UniqCoffeeScreen.Complete.name)
-                }
-            )
-        }
+                SelectedCoffeeCard(
+                    R.drawable.espresso,
+                    R.string.espresso,
+                    2.99,
+                    {
+                        navController.navigate(UniqCoffeeScreen.Complete.name)
+                    }
+                )
+            }
 
         composable(route = UniqCoffeeScreen.Complete.name) {
             OrderCompletedView(

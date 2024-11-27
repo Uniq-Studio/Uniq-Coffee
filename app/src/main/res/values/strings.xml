@@ -63,6 +63,7 @@
     <string name="card_number">Card Number</string>
     <string name="card_expirery">Expirery Date</string>
     <string name="card_cvv">CVV</string>
+    <string name="pay">Pay</string>
 
 
     <string name="thank_you">Thank You</string>
