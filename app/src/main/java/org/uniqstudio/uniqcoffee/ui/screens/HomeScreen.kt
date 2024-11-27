@@ -1,22 +1,28 @@
 package org.uniqstudio.uniqcoffee.ui.screens
 
+import android.R.attr.text
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.uniqstudio.uniqcoffee.R
 
 @Composable
@@ -43,12 +49,15 @@ fun HomeScreenApp(
         contentAlignment = Alignment.Center
     ) {
         Column(
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            HeaderText(welcomeBackText)
-            HeaderText(userNameText)
-            Spacer(modifier = Modifier.size(10.dp))
+            Column {
+                HeaderText(welcomeBackText, false, 55)
+                HeaderText(userNameText, true, 50)
+            }
+            Spacer(modifier = Modifier.size(100.dp))
             StampCard(currentStamp, totalStamp)
-            Spacer(modifier = Modifier.size(20.dp))
+            Spacer(modifier = Modifier.size(100.dp))
             ButtonArray(
                 coffeeSettingImage,
                 coffeeSettingText,
@@ -63,19 +72,38 @@ fun HomeScreenApp(
 
 @Composable
 fun StampCard(currentStamp: Int, totalStamp: Int) {
-    Column() {
+    Column(
+        modifier = Modifier
+            .width(375.dp)
+            .background(androidx.compose.ui.graphics.Color.White)
+    ) {
         Row {
+            Spacer(modifier = Modifier.size(10.dp))
+            TextBoxed(R.string.stamp_card, true, 20)
+
+            Spacer(modifier = Modifier.size(10.dp)
+                .weight(1f))
+
             Text(
-                text = stringResource(R.string.stamp_card)
-            )
-            Text(
-                text = "$currentStamp/$totalStamp"
-            )
+                text = "$currentStamp/$totalStamp",
+                style = MaterialTheme.typography.headlineLarge,
+                fontSize = 20.sp
+             )
+
+            Spacer(modifier = Modifier.size(10.dp))
+
         }
+
+        Spacer(modifier = Modifier.size(10.dp))
 
         LinearProgressIndicator(
             progress = { currentStamp.toFloat() / totalStamp.toFloat() },
+            modifier = Modifier.heightIn(50.dp)
+                .fillMaxWidth()
+                .padding(10.dp)
         )
+
+        Spacer(modifier = Modifier.size(10.dp))
     }
 }
 
@@ -91,7 +119,7 @@ fun ButtonArray(
 ) {
     Row {
         CoffeeButton(buttonOneImage, buttonOneText, buttonOneOnClick)
-        Spacer(modifier = Modifier.size(10.dp))
+        Spacer(modifier = Modifier.size(50.dp))
         CoffeeButton(buttonTwoImage, buttonTwoText, buttonTwoOnClick)
     }
 }
@@ -106,7 +134,7 @@ fun CoffeeScreenPreview() {
         3,
         10,
 
-        R.drawable.coffee_bean,
+        R.drawable.settings,
         R.string.settings,
         {},
 

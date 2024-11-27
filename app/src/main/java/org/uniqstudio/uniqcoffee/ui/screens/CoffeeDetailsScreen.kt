@@ -3,13 +3,21 @@ package org.uniqstudio.uniqcoffee.ui.screens
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.uniqstudio.uniqcoffee.R
 
 @Composable
@@ -21,28 +29,36 @@ fun CoffeeDetailsScreen(
     @StringRes milkType: Int,
     kcal: Int,
     onClick: () -> Unit
-){
-    Column() {
-        HeaderText(title)
-        Text("$$price")
-        Image(painter = painterResource(image), contentDescription = stringResource(title))
-        DescriptionText(description)
-        HiddenDetailsBox(
-            true,
-            onClick = {},
-            R.string.milk_type,
-            milkType,
-            false,
-            R.string.milk_semi
-        )
-        HiddenDetailsBox(
-            true,
-            {},
-            R.string.kcal,
-            kcal,
-            true,
-            R.string.kcal_info
-        )
+) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+            .padding(40.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            HeaderText(title, true, 60)
+            Text(
+                "$$price",
+                fontSize = 20.sp
+                )
+
+            Spacer(modifier = Modifier.padding(20.dp))
+
+            Image(painter = painterResource(image), contentDescription = stringResource(title))
+            DescriptionText(description)
+            HiddenDetailsBox(
+                R.string.milk_type,
+                milkType,
+                false,
+                R.string.milk_semi
+            )
+            HiddenDetailsBox(
+                R.string.kcal,
+                kcal,
+                true,
+                R.string.kcal_info
+            )
+        }
     }
     BottomBarButton(R.string.add_to_cart, onClick)
 }

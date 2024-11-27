@@ -30,7 +30,7 @@ fun UniqCoffeeApp(
                 R.string.user_name_temp,
                 3,
                 10,
-                R.drawable.coffee_bean,
+                R.drawable.settings,
                 R.string.settings,
                 {},
                 R.drawable.coffee_bean,
