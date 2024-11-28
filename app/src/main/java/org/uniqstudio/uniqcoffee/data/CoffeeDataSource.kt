@@ -11,32 +11,32 @@ class CoffeeDataSource {
                 titleResourceId = R.string.espresso,
                 descriptionResourceId = R.string.espresso_description,
                 milkTypeResourceId = R.string.milk_none,
-                price = 2.50,
-                kcal = 100
+                price = 2.10,
+                kcal = 6
             ),
             Coffee(
                 imageResourceId = R.drawable.latte,
                 titleResourceId = R.string.latte,
                 descriptionResourceId = R.string.latte_description,
                 milkTypeResourceId = R.string.milk_semi,
-                price = 3.00,
-                kcal = 150
+                price = 3.50,
+                kcal = 153
             ),
             Coffee(
                 imageResourceId = R.drawable.cappuccino,
                 titleResourceId = R.string.cappuccino,
                 descriptionResourceId = R.string.cappuccino_description,
-                milkTypeResourceId = R.string.milk_skimmed,
+                milkTypeResourceId = R.string.milk_semi,
                 price = 3.50,
-                kcal = 200
+                kcal = 156
             ),
             Coffee(
                 imageResourceId = R.drawable.flat_white,
                 titleResourceId = R.string.flat_white,
                 descriptionResourceId = R.string.flat_white_description,
-                milkTypeResourceId = R.string.milk_semi,
-                price = 3.00,
-                kcal = 150
+                milkTypeResourceId = R.string.milk_whole,
+                price = 3.60,
+                kcal = 195
             ),
             Coffee(
                 imageResourceId = R.drawable.americano,
@@ -44,7 +44,7 @@ class CoffeeDataSource {
                 descriptionResourceId = R.string.americano_description,
                 milkTypeResourceId = R.string.milk_none,
                 price = 2.50,
-                kcal = 100
+                kcal = 22
             ),
             Coffee(
                 imageResourceId = R.drawable.macchiato,
@@ -52,15 +52,15 @@ class CoffeeDataSource {
                 descriptionResourceId = R.string.macchiato_description,
                 milkTypeResourceId = R.string.milk_semi,
                 price = 3.00,
-                kcal = 150
+                kcal = 10
             ),
             Coffee(
                 imageResourceId = R.drawable.mocha,
                 titleResourceId = R.string.mocha,
                 descriptionResourceId = R.string.mocha_description,
                 milkTypeResourceId = R.string.milk_whole,
-                price = 3.50,
-                kcal = 200
+                price = 2.50,
+                kcal = 15
             ),
 
             Coffee(
@@ -68,24 +68,24 @@ class CoffeeDataSource {
                 titleResourceId = R.string.hot_chocolate,
                 descriptionResourceId = R.string.hot_chocolate_description,
                 milkTypeResourceId = R.string.milk_whole,
-                price = 3.50,
-                kcal = 200
+                price = 3.65,
+                kcal = 362
             ),
             Coffee(
                 imageResourceId = R.drawable.tea,
                 titleResourceId = R.string.tea,
                 descriptionResourceId = R.string.tea_description,
                 milkTypeResourceId = R.string.milk_none,
-                price = 2.50,
-                kcal = 100
+                price = 2.40,
+                kcal = 10
             ),
             Coffee(
                 imageResourceId = R.drawable.decaf_tea,
                 titleResourceId = R.string.decaf_tea,
                 descriptionResourceId = R.string.decaf_tea_description,
                 milkTypeResourceId = R.string.milk_none,
-                price = 2.50,
-                kcal = 100
+                price = 2.40,
+                kcal = 10
             )
             )
 

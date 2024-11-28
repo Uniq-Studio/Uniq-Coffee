@@ -20,6 +20,7 @@ enum class UniqCoffeeScreen(@StringRes val title: Int){
 @Composable
 fun UniqCoffeeApp(
     navController: NavHostController = rememberNavController()
+
 ) {
     NavHost(
         navController = navController,
@@ -44,8 +45,11 @@ fun UniqCoffeeApp(
 
         composable(route = UniqCoffeeScreen.Selection.name) {
             CoffeeSelectionApp(
-                onClick = {
+                onClickCoffee = {
                     navController.navigate(UniqCoffeeScreen.Details.name)
+                },
+                onClickBack = {
+                    navController.navigateUp()
                 })
         }
 
@@ -69,8 +73,13 @@ fun UniqCoffeeApp(
                     R.string.espresso,
                     2.99,
                     {
-                        navController.navigate(UniqCoffeeScreen.Complete.name)
-                    }
+                        navController.navigate("complete") {
+                            popUpTo(navController.graph.startDestinationId) {
+                                inclusive = false
+                            }
+                        }
+                    },
+                    {navController.navigateUp()}
                 )
             }
 
@@ -78,8 +87,11 @@ fun UniqCoffeeApp(
             OrderCompletedView(
                 R.string.thank_you,
                 R.string.being_made,
-                {
-                    navController.navigate(UniqCoffeeScreen.Start.name)
+                {navController.navigate("start") {
+                    popUpTo(navController.graph.startDestinationId) {
+                        inclusive = false
+                    }
+                }
                 })
         }
 

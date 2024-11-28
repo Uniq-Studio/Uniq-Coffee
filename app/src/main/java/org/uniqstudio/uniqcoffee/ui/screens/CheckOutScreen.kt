@@ -38,34 +38,35 @@ import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
 @Composable
-fun SelectedCoffeeCard(@DrawableRes image: Int, @StringRes title: Int, price: Double, onClick: () -> Unit) {
+fun SelectedCoffeeCard(@DrawableRes image: Int, @StringRes title: Int, price: Double, onClick: () -> Unit, onClickBack: () -> Unit) {
         Column(
-            modifier = Modifier.padding(25.dp)
         ) {
-            TopAppBar(R.string.payment)
+            TopAppBar(R.string.payment, 2.5f, true, onClickBack)
 
-            Spacer(modifier = Modifier.padding(10.dp))
+            Column(modifier = Modifier.padding(25.dp)) {
+                Spacer(modifier = Modifier.padding(10.dp))
 
-            Card(
-                modifier = Modifier.height(100.dp)
-            ) {
-                Row() {
-                    Image(
-                        painter = painterResource(image),
-                        contentDescription = stringResource(title),
-                        modifier = Modifier
-                            .size(100.dp)
-                            .padding(5.dp)
-                    )
-                    Column(modifier = Modifier.weight(1f)) {
-                        Spacer(Modifier.padding(top = 5.dp))
-                        TextBoxed(title, true, 30)
-                        Spacer(modifier = Modifier.weight(1f))
-                        Text(
-                            text = "$$price",
-                            fontSize = 20.sp,
-                            modifier = Modifier.padding(bottom = 10.dp)
+                Card(
+                    modifier = Modifier.height(100.dp)
+                ) {
+                    Row() {
+                        Image(
+                            painter = painterResource(image),
+                            contentDescription = stringResource(title),
+                            modifier = Modifier
+                                .size(100.dp)
+                                .padding(5.dp)
                         )
+                        Column(modifier = Modifier.weight(1f)) {
+                            Spacer(Modifier.padding(top = 5.dp))
+                            TextBoxed(title, true, 30)
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = "$$price",
+                                fontSize = 20.sp,
+                                modifier = Modifier.padding(bottom = 10.dp)
+                            )
+                        }
                     }
                 }
             }

@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
-
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,20 +22,25 @@ import org.uniqstudio.uniqcoffee.model.Coffee
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
 @Composable
-fun CoffeeSelectionApp(onClick: () -> Unit) {
+fun CoffeeSelectionApp(
+    onClickCoffee: () -> Unit,
+    onClickBack: () -> Unit) {
+
     CoffeeSelectionScreen(CoffeeDataSource().loadCoffee(),
-        onClick = onClick)
+        onClickCoffee = onClickCoffee,
+        onClickBack = onClickBack)
 }
 
 @Composable
 fun CoffeeSelectionScreen( coffeeList: List<Coffee>,
-                           onClick: () -> Unit
+                           onClickCoffee: () -> Unit,
+                           onClickBack: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TopAppBar(R.string.select_coffee)
+        TopAppBar(R.string.select_coffee, 3f,true, onClickBack = onClickBack)
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier.fillMaxSize(),
@@ -46,7 +50,7 @@ fun CoffeeSelectionScreen( coffeeList: List<Coffee>,
                     modifier = Modifier
                         .size(width = 200.dp, height = 300.dp),
                     coffee = coffee,
-                    onClick = onClick,
+                    onClick = onClickCoffee,
                 )
             }
         }
