@@ -1,6 +1,5 @@
 package org.uniqstudio.uniqcoffee.ui.screens
 
-import android.R.attr.text
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
@@ -29,7 +28,7 @@ import org.uniqstudio.uniqcoffee.R
 fun HomeScreenApp(
     //Header Variables
     @StringRes welcomeBackText: Int,
-    @StringRes userNameText: Int,
+    userNameText: String,
 
     //Stamp Card Variables
     currentStamp: Int,
@@ -129,7 +128,7 @@ fun ButtonArray(
 fun CoffeeScreenPreview() {
     HomeScreenApp(
         R.string.welcome_back,
-        R.string.user_name_temp,
+        "Aaron",
 
         3,
         10,

@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.uniqstudio.uniqcoffee.R
+import org.uniqstudio.uniqcoffee.data.OrderUiState
 
 
 enum class UniqCoffeeScreen(@StringRes val title: Int){
@@ -19,8 +20,8 @@ enum class UniqCoffeeScreen(@StringRes val title: Int){
 
 @Composable
 fun UniqCoffeeApp(
-    navController: NavHostController = rememberNavController()
-
+    navController: NavHostController = rememberNavController(),
+    orderUiState: OrderUiState = OrderUiState()
 ) {
     NavHost(
         navController = navController,
@@ -29,8 +30,8 @@ fun UniqCoffeeApp(
         composable(route = UniqCoffeeScreen.Start.name) {
             HomeScreenApp(
                 R.string.welcome_back,
-                R.string.user_name_temp,
-                3,
+                orderUiState.userName,
+                orderUiState.currentStamp,
                 10,
                 R.drawable.settings,
                 R.string.settings,
@@ -55,12 +56,12 @@ fun UniqCoffeeApp(
 
         composable(route = UniqCoffeeScreen.Details.name) {
             CoffeeDetailsScreen(
-                R.string.espresso,
-                2.99,
-                R.drawable.espresso,
-                R.string.espresso_description,
-                R.string.milk_semi,
-                100,
+                orderUiState.selectedCoffee,
+                orderUiState.selectedCoffeePrice,
+                orderUiState.selectedCoffeeImage,
+                orderUiState.selectedCoffeeDescription,
+                orderUiState.selectedCoffeeMilkType,
+                orderUiState.selectedCoffeeKcal,
                 {
                     navController.navigate(UniqCoffeeScreen.CheckOut.name)
                 }
@@ -69,9 +70,9 @@ fun UniqCoffeeApp(
 
         composable(route = UniqCoffeeScreen.CheckOut.name) {
                 SelectedCoffeeCard(
-                    R.drawable.espresso,
-                    R.string.espresso,
-                    2.99,
+                    orderUiState.selectedCoffeeImage,
+                    orderUiState.selectedCoffee,
+                    orderUiState.selectedCoffeePrice,
                     {
                         navController.navigate("complete") {
                             popUpTo(navController.graph.startDestinationId) {
@@ -91,7 +92,7 @@ fun UniqCoffeeApp(
                     popUpTo(navController.graph.startDestinationId) {
                         inclusive = false
                     }
-                }
+                    }
                 })
         }
 

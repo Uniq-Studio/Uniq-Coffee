@@ -62,6 +62,24 @@ fun HeaderText(@StringRes text: Int, bold: Boolean, size: Int) {
 }
 
 @Composable
+fun HeaderText(text: String, bold: Boolean, size: Int) {
+    if (!bold){
+        Text(
+            text = text,
+            style = MaterialTheme.typography.headlineLarge,
+            fontSize = size.sp,
+        )
+    } else {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.headlineLarge,
+            fontWeight = FontWeight.Bold,
+            fontSize = size.sp,
+        )
+    }
+}
+
+@Composable
 fun DescriptionText(@StringRes text: Int) {
     Text(
         text = stringResource(text),
