@@ -35,10 +35,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.uniqstudio.uniqcoffee.R
+import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
 @Composable
-fun SelectedCoffeeCard(@DrawableRes image: Int, @StringRes title: Int, price: Double, onClick: () -> Unit, onClickBack: () -> Unit) {
+fun SelectedCoffeeCard(
+    @DrawableRes image: Int,
+    @StringRes title: Int,
+    price: Double,
+    onClick: () -> Unit,
+    onClickBack: () -> Unit,
+    //viewModel: OrderViewModel
+    ){
+
         Column(
         ) {
             TopAppBar(R.string.payment, 2.5f, true, onClickBack)

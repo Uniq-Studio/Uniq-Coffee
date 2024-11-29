@@ -2,16 +2,20 @@ package org.uniqstudio.uniqcoffee.ui.screens
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.uniqstudio.uniqcoffee.R
-import org.uniqstudio.uniqcoffee.data.OrderUiState
+import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 
 
 enum class UniqCoffeeScreen(@StringRes val title: Int){
     Start(R.string.app_name),
+    Settings(R.string.settings),
     Selection(R.string.select_coffee),
     Details(R.string.coffee_details),
     CheckOut(R.string.payment),
@@ -21,8 +25,10 @@ enum class UniqCoffeeScreen(@StringRes val title: Int){
 @Composable
 fun UniqCoffeeApp(
     navController: NavHostController = rememberNavController(),
-    orderUiState: OrderUiState = OrderUiState()
+    viewModel: OrderViewModel = viewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+
     NavHost(
         navController = navController,
         startDestination = UniqCoffeeScreen.Start.name
@@ -30,57 +36,65 @@ fun UniqCoffeeApp(
         composable(route = UniqCoffeeScreen.Start.name) {
             HomeScreenApp(
                 R.string.welcome_back,
-                orderUiState.userName,
-                orderUiState.currentStamp,
-                10,
+                uiState.userName,
+                uiState.currentStamp,
+                uiState.totalStamp,
+
                 R.drawable.settings,
                 R.string.settings,
-                {},
+                { navController.navigate(UniqCoffeeScreen.Settings.name) },
+
                 R.drawable.coffee_bean,
                 R.string.order,
-                {
-                    navController.navigate(UniqCoffeeScreen.Selection.name)
-                }
+                { navController.navigate(UniqCoffeeScreen.Selection.name) }
+            )
+        }
+
+        composable(route = UniqCoffeeScreen.Settings.name){
+            SettingsScreen(
+                onClickBack = { navController.navigateUp() },
+                onClickAbout = {},
+                viewModel
             )
         }
 
         composable(route = UniqCoffeeScreen.Selection.name) {
             CoffeeSelectionApp(
-                onClickCoffee = {
-                    navController.navigate(UniqCoffeeScreen.Details.name)
-                },
-                onClickBack = {
-                    navController.navigateUp()
-                })
+                onClickCoffee = { navController.navigate(UniqCoffeeScreen.Details.name) },
+                onClickBack = { navController.navigateUp() })
         }
 
         composable(route = UniqCoffeeScreen.Details.name) {
             CoffeeDetailsScreen(
-                orderUiState.selectedCoffee,
-                orderUiState.selectedCoffeePrice,
-                orderUiState.selectedCoffeeImage,
-                orderUiState.selectedCoffeeDescription,
-                orderUiState.selectedCoffeeMilkType,
-                orderUiState.selectedCoffeeKcal,
-                {
-                    navController.navigate(UniqCoffeeScreen.CheckOut.name)
-                }
+                uiState.selectedCoffee,
+                uiState.selectedCoffeePrice,
+
+                uiState.selectedCoffeeImage,
+
+                uiState.selectedCoffeeDescription,
+
+                uiState.selectedCoffeeMilkType,
+                uiState.selectedCoffeeKcal,
+
+                { navController.navigate(UniqCoffeeScreen.CheckOut.name) }
             )
         }
 
         composable(route = UniqCoffeeScreen.CheckOut.name) {
                 SelectedCoffeeCard(
-                    orderUiState.selectedCoffeeImage,
-                    orderUiState.selectedCoffee,
-                    orderUiState.selectedCoffeePrice,
+                    uiState.selectedCoffeeImage,
+                    uiState.selectedCoffee,
+                    uiState.selectedCoffeePrice,
                     {
+                        viewModel.updateCurrentStamp(uiState.currentStamp + 1)
                         navController.navigate("complete") {
                             popUpTo(navController.graph.startDestinationId) {
                                 inclusive = false
                             }
                         }
                     },
-                    {navController.navigateUp()}
+                    {navController.navigateUp()},
+
                 )
             }
 
