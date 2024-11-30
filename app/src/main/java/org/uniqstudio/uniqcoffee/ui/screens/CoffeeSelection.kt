@@ -16,25 +16,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.data.CoffeeDataSource
 import org.uniqstudio.uniqcoffee.model.Coffee
+import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
 @Composable
 fun CoffeeSelectionApp(
     onClickCoffee: () -> Unit,
-    onClickBack: () -> Unit) {
-
+    onClickBack: () -> Unit,
+    viewModel: OrderViewModel) {
     CoffeeSelectionScreen(CoffeeDataSource().loadCoffee(),
         onClickCoffee = onClickCoffee,
-        onClickBack = onClickBack)
+        onClickBack = onClickBack,
+        viewModel)
 }
 
 @Composable
 fun CoffeeSelectionScreen( coffeeList: List<Coffee>,
                            onClickCoffee: () -> Unit,
-                           onClickBack: () -> Unit
+                           onClickBack: () -> Unit,
+                           viewModel: OrderViewModel
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -51,6 +55,7 @@ fun CoffeeSelectionScreen( coffeeList: List<Coffee>,
                         .size(width = 200.dp, height = 300.dp),
                     coffee = coffee,
                     onClick = onClickCoffee,
+                    viewModel
                 )
             }
         }
@@ -62,12 +67,22 @@ fun CoffeeCard(
     modifier: Modifier = Modifier,
     coffee: Coffee,
     onClick: () -> Unit = {},
+    viewModel: OrderViewModel
 ) {
     Card(
         modifier = modifier.padding(8.dp),
     ) {
         Card(
-            onClick = onClick,
+            onClick =
+                {viewModel.updateCoffeeSelectionScreen(
+                    selectedCoffee = coffee.titleResourceId,
+                    price = coffee.price,
+                    image = coffee.imageResourceId,
+                    description = coffee.descriptionResourceId,
+                    milkType = coffee.milkTypeResourceId,
+                    kcal = coffee.kcal
+                )
+                onClick()}
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -97,7 +112,8 @@ fun CoffeeSelectionScreenPreview() {
             price = 2.99,
             kcal = 100
         ),
-        onClick = {}
+        onClick = {},
+        viewModel = viewModel()
     )
 }
 

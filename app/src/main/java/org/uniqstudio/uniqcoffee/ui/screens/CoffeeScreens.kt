@@ -60,8 +60,11 @@ fun UniqCoffeeApp(
 
         composable(route = UniqCoffeeScreen.Selection.name) {
             CoffeeSelectionApp(
-                onClickCoffee = { navController.navigate(UniqCoffeeScreen.Details.name) },
-                onClickBack = { navController.navigateUp() })
+                onClickCoffee = {
+                    navController.navigate(UniqCoffeeScreen.Details.name)
+                                },
+                onClickBack = { navController.navigateUp() },
+                viewModel)
         }
 
         composable(route = UniqCoffeeScreen.Details.name) {

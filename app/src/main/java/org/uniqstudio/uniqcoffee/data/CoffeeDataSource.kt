@@ -11,7 +11,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.espresso,
                 descriptionResourceId = R.string.espresso_description,
                 milkTypeResourceId = R.string.milk_none,
-                price = 2.10,
+                price = 2.15,
                 kcal = 6
             ),
             Coffee(
@@ -19,7 +19,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.latte,
                 descriptionResourceId = R.string.latte_description,
                 milkTypeResourceId = R.string.milk_semi,
-                price = 3.50,
+                price = 3.55,
                 kcal = 153
             ),
             Coffee(
@@ -27,7 +27,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.cappuccino,
                 descriptionResourceId = R.string.cappuccino_description,
                 milkTypeResourceId = R.string.milk_semi,
-                price = 3.50,
+                price = 3.55,
                 kcal = 156
             ),
             Coffee(
@@ -35,7 +35,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.flat_white,
                 descriptionResourceId = R.string.flat_white_description,
                 milkTypeResourceId = R.string.milk_whole,
-                price = 3.60,
+                price = 3.65,
                 kcal = 195
             ),
             Coffee(
@@ -43,7 +43,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.americano,
                 descriptionResourceId = R.string.americano_description,
                 milkTypeResourceId = R.string.milk_none,
-                price = 2.50,
+                price = 2.55,
                 kcal = 22
             ),
             Coffee(
@@ -51,7 +51,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.macchiato,
                 descriptionResourceId = R.string.macchiato_description,
                 milkTypeResourceId = R.string.milk_semi,
-                price = 3.00,
+                price = 3.05,
                 kcal = 10
             ),
             Coffee(
@@ -59,7 +59,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.mocha,
                 descriptionResourceId = R.string.mocha_description,
                 milkTypeResourceId = R.string.milk_whole,
-                price = 2.50,
+                price = 2.55,
                 kcal = 15
             ),
 
@@ -76,7 +76,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.tea,
                 descriptionResourceId = R.string.tea_description,
                 milkTypeResourceId = R.string.milk_none,
-                price = 2.40,
+                price = 2.45,
                 kcal = 10
             ),
             Coffee(
@@ -84,7 +84,7 @@ class CoffeeDataSource {
                 titleResourceId = R.string.decaf_tea,
                 descriptionResourceId = R.string.decaf_tea_description,
                 milkTypeResourceId = R.string.milk_none,
-                price = 2.40,
+                price = 2.45,
                 kcal = 10
             )
             )

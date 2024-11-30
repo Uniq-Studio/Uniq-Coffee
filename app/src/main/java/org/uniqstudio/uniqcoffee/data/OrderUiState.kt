@@ -15,10 +15,4 @@ data class OrderUiState(
     @StringRes var selectedCoffeeDescription: Int = R.string.latte_description,
     @StringRes var selectedCoffeeMilkType: Int = R.string.milk_semi,
     var selectedCoffeeKcal: Int = 365,
-
-    val cardNumber: String = "",
-    val cardName: String = "",
-    val cardExpiry: String = "",
-    val cardCVC: String = "",
-
     )

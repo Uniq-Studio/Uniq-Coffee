@@ -1,5 +1,7 @@
 package org.uniqstudio.uniqcoffee.ui
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,6 +19,15 @@ class OrderViewModel : ViewModel() {
 
     fun updateCurrentStamp(newCurrentStamp: Int) {
         _uiState.value = _uiState.value.copy(currentStamp = newCurrentStamp)
+    }
+
+    fun updateCoffeeSelectionScreen(@StringRes selectedCoffee: Int, price: Double, @DrawableRes image: Int, @StringRes description: Int, @StringRes milkType: Int, kcal: Int) {
+        _uiState.value = _uiState.value.copy(selectedCoffee = selectedCoffee,
+            selectedCoffeePrice = price,
+            selectedCoffeeImage = image,
+            selectedCoffeeDescription = description,
+            selectedCoffeeMilkType = milkType,
+            selectedCoffeeKcal = kcal)
     }
 
 }
