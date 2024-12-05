@@ -61,11 +61,12 @@
 
     <string name="add_to_cart">Add to Cart</string>
 
+
     <string name="payment">Payment</string>
     <string name="card">Card</string>
     <string name="card_name">Name on Card</string>
     <string name="card_number">Card Number</string>
-    <string name="card_expirery">Expirery Date</string>
+    <string name="card_expiry">Expiry Date</string>
     <string name="card_cvv">CVV</string>
     <string name="pay">Pay</string>
 
@@ -82,5 +83,15 @@
     <string name="number">+44 7444 555 666</string>
     <string name="socials">\@aaron-hamil5</string>
     <string name="email">aaron.hamil5@gmail.com</string>
+
+    <!-- Settings Screen Data -->
+    <string name="uniq_id">Your Uniq ID</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="current_username">Your first name is:</string>
+
+    <string name="card_info">Current Card Information</string>
+
+    <string name="update_info">Update Uniq ID</string>
+
 
 </resources>

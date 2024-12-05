@@ -21,7 +21,7 @@ import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
 @Composable
 fun AboutScreenApp(onClickBack: () -> Unit) {
-    Column() {
+    Column {
         TopAppBar(R.string.about, 2f, true, onClickBack)
     }
 

@@ -2,22 +2,21 @@ package org.uniqstudio.uniqcoffee.data
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import org.uniqstudio.uniqcoffee.R
 
 data class OrderUiState(
     var userName: String = "",
     var currentStamp: Int = 0,
     var totalStamp: Int = 10,
 
-    @StringRes var selectedCoffee: Int = R.string.latte,
-    var selectedCoffeePrice: Double = 3.65,
-    @DrawableRes var selectedCoffeeImage: Int = R.drawable.latte,
-    @StringRes var selectedCoffeeDescription: Int = R.string.latte_description,
-    @StringRes var selectedCoffeeMilkType: Int = R.string.milk_semi,
-    var selectedCoffeeKcal: Int = 365,
+    @StringRes var selectedCoffee: Int = 0,
+    var selectedCoffeePrice: Double = 0.0,
+    @DrawableRes var selectedCoffeeImage: Int = 0,
+    @StringRes var selectedCoffeeDescription: Int = 0,
+    @StringRes var selectedCoffeeMilkType: Int = 0,
+    var selectedCoffeeKcal: Int = 0,
 
-    var cardNumber: String = "1234567891234567",
-    var cardName: String = "Mr Example U Text",
-    var cardExpiry: String = "01/26",
-    var cardCvv: String = "334",
+    var cardNumber: String = "",
+    var cardName: String = "",
+    var cardExpiry: String = "",
+    var cardCvv: String = "",
     )

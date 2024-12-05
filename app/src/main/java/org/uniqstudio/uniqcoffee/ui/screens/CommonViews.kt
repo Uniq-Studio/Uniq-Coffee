@@ -180,7 +180,7 @@ fun HiddenDetailsBox(
                 }
 
                 if (expanded) {
-                    Row() {
+                    Row {
                         Text(stringResource(description)
                             , modifier = Modifier.padding(10.dp))
                     }
@@ -303,7 +303,7 @@ fun InputFieldPreview(){
 @Preview
 @Composable
 fun InputFieldRowPreview(){
-    InputFieldRow(R.string.card_expirery, R.string.card_cvv, 6)
+    InputFieldRow(R.string.card_expiry, R.string.card_cvv, 6)
 }
 
 @Preview

@@ -55,8 +55,7 @@ fun SelectedCoffeeCard(
     viewModel: OrderViewModel
     ){
 
-        Column(
-        ) {
+        Column {
             TopAppBar(R.string.payment, 2.5f, true, onClickBack)
 
             Column(modifier = Modifier.padding(25.dp)) {
@@ -65,7 +64,7 @@ fun SelectedCoffeeCard(
                 Card(
                     modifier = Modifier.height(100.dp)
                 ) {
-                    Row() {
+                    Row {
                         Image(
                             painter = painterResource(image),
                             contentDescription = stringResource(title),
@@ -106,7 +105,7 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
             .padding(20.dp),
         contentAlignment = Alignment.BottomCenter
     ) {
-        Card() {
+        Card {
             Column(
                 modifier = Modifier
                     .animateContentSize(
@@ -116,7 +115,7 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
                         )
                     )
             ) {
-                Row() {
+                Row {
                     Spacer(modifier = Modifier.padding(5.dp))
                     TextBoxed(R.string.card_number, true, 20)
                     Spacer(modifier = Modifier.weight(1f))
@@ -156,7 +155,7 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
                         OutlinedTextField(
                             value = cardExpiry,
                             onValueChange = {cardExpiry = it},
-                            label = { Text(stringResource(R.string.card_expirery)) },
+                            label = { Text(stringResource(R.string.card_expiry)) },
                             singleLine = true,
                             keyboardOptions = (KeyboardOptions.Default.copy(
                                 keyboardType = KeyboardType.Number,
