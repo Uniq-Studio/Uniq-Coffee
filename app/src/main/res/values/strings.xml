@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name" translatable="false">Uniq Coffee</string>
 
+    <!-- Out of Box Experience -->
+    <string name="welcome">Hey! Welcome to</string>
+
+    <string name="setup_uniq_id">Let us set up your Uniq ID</string>
+    <string name="what_is_your_name">What is your name?</string>
+    <string name="preferred_payment">What is your preferred payment method?</string>
+
+    <string name="uniq_setup_done">That is your Uniq ID Created</string>
+
 
     <string name="welcome_back">Welcome Back,</string>
     <string name="user_name_temp">Aaron</string>
