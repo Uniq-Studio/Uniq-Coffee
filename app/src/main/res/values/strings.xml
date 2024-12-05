@@ -74,4 +74,13 @@
     <string name="being_made">Your order is being now made</string>
 
     <string name="back">Go Back to the Home Screen</string>
+
+    <!-- About Screen Data -->
+    <string name="full_name">Aaron Hamilton</string>
+    <string name="title">Android Developer</string>
+
+    <string name="number">+44 7444 555 666</string>
+    <string name="socials">\@aaron-hamil5</string>
+    <string name="email">aaron.hamil5@gmail.com</string>
+
 </resources>

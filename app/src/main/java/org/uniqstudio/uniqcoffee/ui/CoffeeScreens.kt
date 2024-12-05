@@ -1,4 +1,4 @@
-package org.uniqstudio.uniqcoffee.ui.screens
+package org.uniqstudio.uniqcoffee.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
@@ -10,12 +10,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.uniqstudio.uniqcoffee.R
-import org.uniqstudio.uniqcoffee.ui.OrderViewModel
+import org.uniqstudio.uniqcoffee.ui.screens.AboutScreenApp
+import org.uniqstudio.uniqcoffee.ui.screens.CoffeeDetailsScreen
+import org.uniqstudio.uniqcoffee.ui.screens.CoffeeSelectionApp
+import org.uniqstudio.uniqcoffee.ui.screens.HomeScreenApp
+import org.uniqstudio.uniqcoffee.ui.screens.OrderCompletedView
+import org.uniqstudio.uniqcoffee.ui.screens.SelectedCoffeeCard
+import org.uniqstudio.uniqcoffee.ui.screens.SettingsScreen
 
 
 enum class UniqCoffeeScreen(@StringRes val title: Int){
     Start(R.string.app_name),
     Settings(R.string.settings),
+    About(R.string.about),
     Selection(R.string.select_coffee),
     Details(R.string.coffee_details),
     CheckOut(R.string.payment),
@@ -53,8 +60,13 @@ fun UniqCoffeeApp(
         composable(route = UniqCoffeeScreen.Settings.name){
             SettingsScreen(
                 onClickBack = { navController.navigateUp() },
-                onClickAbout = {},
+                onClickAbout = { navController.navigate(UniqCoffeeScreen.About.name) },
                 viewModel
+            )
+        }
+        composable(route = UniqCoffeeScreen.About.name) {
+            AboutScreenApp(
+                onClickBack = { navController.navigateUp() }
             )
         }
 
@@ -62,9 +74,10 @@ fun UniqCoffeeApp(
             CoffeeSelectionApp(
                 onClickCoffee = {
                     navController.navigate(UniqCoffeeScreen.Details.name)
-                                },
+                },
                 onClickBack = { navController.navigateUp() },
-                viewModel)
+                viewModel
+            )
         }
 
         composable(route = UniqCoffeeScreen.Details.name) {
@@ -84,19 +97,19 @@ fun UniqCoffeeApp(
         }
 
         composable(route = UniqCoffeeScreen.CheckOut.name) {
-                SelectedCoffeeCard(
-                    uiState.selectedCoffeeImage,
-                    uiState.selectedCoffee,
-                    uiState.selectedCoffeePrice,
-                    {
-                        viewModel.updateCurrentStamp(uiState.currentStamp + 1)
-                        navController.navigate("complete") {
-                            popUpTo(navController.graph.startDestinationId) {
-                                inclusive = false
-                            }
+            SelectedCoffeeCard(
+                uiState.selectedCoffeeImage,
+                uiState.selectedCoffee,
+                uiState.selectedCoffeePrice,
+                {
+                    viewModel.updateCurrentStamp(uiState.currentStamp + 1)
+                    navController.navigate("complete") {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = false
                         }
-                    },
-                    {navController.navigateUp()},
+                    }
+                },
+                { navController.navigateUp() },
 
                 )
             }
@@ -105,10 +118,11 @@ fun UniqCoffeeApp(
             OrderCompletedView(
                 R.string.thank_you,
                 R.string.being_made,
-                {navController.navigate("start") {
-                    popUpTo(navController.graph.startDestinationId) {
-                        inclusive = false
-                    }
+                {
+                    navController.navigate("start") {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = false
+                        }
                     }
                 })
         }
