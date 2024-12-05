@@ -22,7 +22,8 @@ enum class UniqCoffeeScreen(@StringRes val title: Int){
 @Composable
 fun OutOfBoxApp(
     navController: NavHostController = rememberNavController(),
-    viewModel: OrderViewModel = viewModel()
+    viewModel: OrderViewModel = viewModel(),
+    launchApp: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
     NavHost(
@@ -56,7 +57,7 @@ fun OutOfBoxApp(
                 R.string.uniq_setup_done,
                 25,
                 R.string.thank_you,
-                {  }
+                { launchApp() }
             )
         }
     }

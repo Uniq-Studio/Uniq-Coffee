@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
             UniqCoffeeTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     UniqCoffeeApp()
-                }
             }
         }
     }
@@ -44,4 +43,5 @@ fun GreetingPreview() {
         Greeting("Android")
 
     }
+}
 }
