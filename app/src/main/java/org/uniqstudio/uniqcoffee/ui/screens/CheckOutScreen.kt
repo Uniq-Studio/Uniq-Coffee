@@ -15,14 +15,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,6 +36,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,7 +52,7 @@ fun SelectedCoffeeCard(
     price: Double,
     onClick: () -> Unit,
     onClickBack: () -> Unit,
-    //viewModel: OrderViewModel
+    viewModel: OrderViewModel
     ){
 
         Column(
@@ -80,13 +87,19 @@ fun SelectedCoffeeCard(
                 }
             }
         }
-    FakeCardEntryPanel(onClick)
+    FakeCardEntryPanel(onClick, viewModel)
 }
 
 
 @Composable
-fun FakeCardEntryPanel(onClick: () -> Unit) {
-    var expanded by remember { mutableStateOf(false) }
+fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
+    val uiState by viewModel.uiState.collectAsState()
+    var expanded by remember { mutableStateOf(true) }
+
+    var cardNumber by remember { mutableStateOf(uiState.cardNumber) }
+    var cardName by remember { mutableStateOf(uiState.cardName) }
+    var cardExpiry by remember { mutableStateOf(uiState.cardExpiry) }
+    var cardCvv by remember { mutableStateOf(uiState.cardCvv) }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -114,17 +127,76 @@ fun FakeCardEntryPanel(onClick: () -> Unit) {
                     )
                 }
                 if (expanded) {
-                    InputField(R.string.card_number,5,true)
-                    InputField(R.string.card_name,5,false)
-                    InputFieldRow(R.string.card_expirery,R.string.card_cvv,6)
-                    OutlinedButton(
-                        onClick = onClick,
+                    OutlinedTextField(
+                        value = cardNumber,
+                        onValueChange = {cardNumber = it},
+                        label = { Text(stringResource(R.string.card_number)) },
+                        singleLine = true,
+                        keyboardOptions = (KeyboardOptions.Default.copy(
+                            keyboardType = KeyboardType.Number,
+                            imeAction = ImeAction.Next)),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(3.dp)
+                            .padding(5.dp)
+                    )
+                    OutlinedTextField(
+                        value = cardName,
+                        onValueChange = {cardName = it},
+                        label = { Text(stringResource(R.string.card_name)) },
+                        singleLine = true,
+                        keyboardOptions = (KeyboardOptions.Default.copy(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Next)),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(5.dp)
+                    )
+
+                    Row {
+                        OutlinedTextField(
+                            value = cardExpiry,
+                            onValueChange = {cardExpiry = it},
+                            label = { Text(stringResource(R.string.card_expirery)) },
+                            singleLine = true,
+                            keyboardOptions = (KeyboardOptions.Default.copy(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next)),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(5.dp)
+                                .weight(2f)
+                        )
+                        OutlinedTextField(
+                            value = cardCvv,
+                            onValueChange = {cardCvv = it},
+                            label = { Text(stringResource(R.string.card_cvv)) },
+                            singleLine = true,
+                            keyboardOptions = (KeyboardOptions.Default.copy(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Done)),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(5.dp)
+                                .weight(2f)
+                        )
+                        OutlinedButton(
+                            onClick = {
+                                viewModel.updateCardDetails(cardNumber, cardName, cardExpiry, cardCvv)
+                                onClick()},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 5.dp, top = 15.dp, bottom = 5.dp, end = 5.dp)
+                                .weight(1f)
                         ) {
-                            TextBoxed(R.string.pay, true, 25)
+                            Icon(
+                                Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                                contentDescription = null,
+                                modifier = Modifier.size(ButtonDefaults.IconSize)
+                            )
                         }
+                    }
+
+
                     }
                 }
             }

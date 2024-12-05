@@ -109,8 +109,8 @@ fun UniqCoffeeApp(
                         }
                     }
                 },
-                { navController.navigateUp() },
-
+                { navController.navigateUp()},
+                    viewModel
                 )
             }
 

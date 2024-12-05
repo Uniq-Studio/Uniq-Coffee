@@ -30,4 +30,9 @@ class OrderViewModel : ViewModel() {
             selectedCoffeeKcal = kcal)
     }
 
+    fun updateCardDetails(cardNumber: String, cardName: String, cardExpiry: String, cardCvv: String) {
+        _uiState.value = _uiState.value.copy(cardNumber = cardNumber, cardName = cardName, cardExpiry = cardExpiry, cardCvv = cardCvv)
+
+    }
+
 }
