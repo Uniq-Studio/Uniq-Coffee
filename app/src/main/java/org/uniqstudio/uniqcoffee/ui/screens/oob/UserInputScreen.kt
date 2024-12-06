@@ -51,7 +51,7 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
         HeaderText(R.string.setup_uniq_id, false, 30)
         HeaderText(title, true, 20)
 
-        Spacer(modifier = Modifier.size(100.dp))
+        Spacer(modifier = Modifier.size(50.dp))
         if (stageOne) {
             OutlinedTextField(
                 value = username,
@@ -122,7 +122,7 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
                 )
             }
         }
-        Spacer(modifier = Modifier.size(150.dp))
+        Spacer(modifier = Modifier.size(100.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -142,12 +142,13 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
                     }
                     onClickNext()
                           },
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(150.dp)
             ) {
                 Image(
-                    painter = painterResource(R.drawable.coffee_bean),
+                    painter = painterResource(R.drawable.broken_arrow_right),
                     contentDescription = null,
                     modifier = Modifier.padding(15.dp)
+                        .size(150.dp)
                 )
             }
         }

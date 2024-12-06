@@ -28,7 +28,7 @@ fun DialogScreen(@StringRes title: Int, textSize: Int, @StringRes subtitle: Int,
         HeaderText(title, false, textSize)
         HeaderText(subtitle, true, 60)
 
-        Spacer(modifier = Modifier.size(300.dp))
+        Spacer(modifier = Modifier.size(150.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -36,12 +36,13 @@ fun DialogScreen(@StringRes title: Int, textSize: Int, @StringRes subtitle: Int,
         ) {
             IconButton(
                 onClick = onClickNext,
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(150.dp)
             ) {
                 Image(
-                    painter = painterResource(R.drawable.coffee_bean),
+                    painter = painterResource(R.drawable.broken_arrow_right),
                     contentDescription = null,
                     modifier = Modifier.padding(15.dp)
+                        .size(150.dp)
                 )
             }
         }
