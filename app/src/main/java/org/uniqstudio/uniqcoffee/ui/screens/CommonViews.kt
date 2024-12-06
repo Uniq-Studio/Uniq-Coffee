@@ -1,6 +1,5 @@
 package org.uniqstudio.uniqcoffee.ui.screens
 
-
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.animateContentSize
@@ -42,6 +41,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.uniqstudio.uniqcoffee.R
+
+//These are where the reused views are
 
 @Composable
 fun HeaderText(@StringRes text: Int, bold: Boolean, size: Int) {
