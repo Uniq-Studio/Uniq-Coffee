@@ -34,6 +34,7 @@ fun HomeScreenApp(
     //Stamp Card Variables
     currentStamp: Int,
     totalStamp: Int,
+    freeCoffees: Int,
 
     //Button Variables
     @DrawableRes coffeeSettingImage: Int,
@@ -58,6 +59,9 @@ fun HomeScreenApp(
             }
             Spacer(modifier = Modifier.size(100.dp))
             StampCard(currentStamp, totalStamp)
+            if(freeCoffees > 0){
+                TextBoxed(R.string.free_coffee, true, 15)
+            }
             Spacer(modifier = Modifier.size(100.dp))
             ButtonArray(
                 coffeeSettingImage,
@@ -104,6 +108,7 @@ fun StampCard(currentStamp: Int, totalStamp: Int) {
                 .padding(10.dp)
         )
 
+
         Spacer(modifier = Modifier.size(10.dp))
     }
 }
@@ -134,6 +139,7 @@ fun CoffeeScreenPreview() {
 
         3,
         10,
+        1,
 
         R.drawable.settings,
         R.string.settings,
@@ -141,6 +147,6 @@ fun CoffeeScreenPreview() {
 
         R.drawable.coffee_bean,
         R.string.order,
-        {}
+        {},
     )
 }

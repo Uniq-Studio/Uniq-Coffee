@@ -57,6 +57,7 @@ fun UniqCoffeeApp(
 
                 uiState.currentStamp,
                 uiState.totalStamp,
+                uiState.freeCoffees,
 
                 R.drawable.settings,
                 R.string.settings,
@@ -64,7 +65,7 @@ fun UniqCoffeeApp(
 
                 R.drawable.coffee_bean,
                 R.string.order,
-                { navController.navigate(UniqCoffeeScreen.Selection.name) }
+                { navController.navigate(UniqCoffeeScreen.Selection.name) },
             )
         }
 
@@ -120,7 +121,25 @@ fun UniqCoffeeApp(
                         }
                     }
                 },
+                {
+                    viewModel.updateCurrentStamp(uiState.currentStamp + 1)
+                    navController.navigate("complete") {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = false
+                        }
+                    }},
+
+                {
+                    viewModel.useFreeCoffee()
+                    navController.navigate("complete") {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = false
+                        }
+                    }
+                },
+
                 { navController.navigateUp()},
+                uiState.freeCoffees,
                     viewModel
                 )
             }

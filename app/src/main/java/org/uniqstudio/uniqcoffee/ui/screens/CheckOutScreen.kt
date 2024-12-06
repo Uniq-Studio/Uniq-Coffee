@@ -22,7 +22,9 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -41,6 +43,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
@@ -51,7 +54,10 @@ fun SelectedCoffeeCard(
     @StringRes title: Int,
     price: Double,
     onClick: () -> Unit,
+    onClickGPay: () -> Unit,
+    onClickFree: () -> Unit,
     onClickBack: () -> Unit,
+    freeCoffees: Int,
     viewModel: OrderViewModel
     ){
 
@@ -86,9 +92,24 @@ fun SelectedCoffeeCard(
                 }
             }
         }
-    FakeCardEntryPanel(onClick, viewModel)
+    PaymentPanel(onClick, onClickGPay, onClickFree, freeCoffees, viewModel)
 }
 
+
+@Composable
+fun PaymentPanel(onClickCard: () -> Unit, onClickGPay: () -> Unit, onClickFree: () -> Unit,freeCoffees: Int, viewModel: OrderViewModel){
+    Box(
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        Column {
+            FakeCardEntryPanel(onClickCard, viewModel)
+            OtherPaymentPanel(R.string.google_pay, onClickGPay)
+            Spacer(Modifier.size(10.dp))
+            if (freeCoffees > 0) OtherPaymentPanel(R.string.free_coffee_pay, onClickFree)
+            Spacer(Modifier.size(10.dp))
+        }
+    }
+}
 
 @Composable
 fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
@@ -102,8 +123,7 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp),
-        contentAlignment = Alignment.BottomCenter
+            .padding(20.dp)
     ) {
         Card {
             Column(
@@ -202,9 +222,29 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
         }
     }
 
+@Composable
+fun OtherPaymentPanel(@StringRes title: Int, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .padding(start = 20.dp, end = 20.dp)
+    ) {
+        FilledTonalButton(
+            onClick = onClick,
+            shape = MaterialTheme.shapes.extraSmall,
+            modifier = Modifier.fillMaxWidth()
+                .height(75.dp)
+        ) {
+            TextBoxed(title, true, 20)
+        }
+    }
+}
+
 
 @Preview
 @Composable
 fun CheckoutScreenPreview() {
 //SelectedCoffeeCard(R.drawable.espresso, R.string.espresso, R.string.espresso_description, 2.99, {})
+    PaymentPanel({},{},{},1,viewModel())
 }

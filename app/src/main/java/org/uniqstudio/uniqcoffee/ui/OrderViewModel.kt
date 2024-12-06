@@ -19,6 +19,18 @@ class OrderViewModel : ViewModel() {
 
     fun updateCurrentStamp(newCurrentStamp: Int) {
         _uiState.value = _uiState.value.copy(currentStamp = newCurrentStamp)
+        if (_uiState.value.currentStamp >= _uiState.value.totalStamp) {
+            _uiState.value = _uiState.value.copy(currentStamp = _uiState.value.currentStamp - _uiState.value.totalStamp )
+            gainFreeCoffee()
+        }
+    }
+
+    fun gainFreeCoffee() {
+        _uiState.value = _uiState.value.copy(freeCoffees = _uiState.value.freeCoffees + 1)
+    }
+
+    fun useFreeCoffee() {
+        _uiState.value = _uiState.value.copy(freeCoffees = _uiState.value.freeCoffees - 1)
     }
 
     fun firstTimeSetUpComplete() {
