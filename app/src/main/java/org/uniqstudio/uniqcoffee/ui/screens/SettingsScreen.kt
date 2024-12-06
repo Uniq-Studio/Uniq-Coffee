@@ -26,7 +26,7 @@ import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
 @Composable
-fun SettingsScreen (onClickBack: () -> Unit, onClickAbout: () -> Unit, viewModel: OrderViewModel){
+fun SettingsScreen(onClickBack: () -> Unit, onClickAbout: () -> Unit, viewModel: OrderViewModel) {
 
     //We get the current username from the view model
     val uiState by viewModel.uiState.collectAsState()
@@ -43,7 +43,7 @@ fun SettingsScreen (onClickBack: () -> Unit, onClickAbout: () -> Unit, viewModel
     ) {
         TopAppBar(R.string.settings, onClickBack)
 
-        Column (Modifier.padding(20.dp)) {
+        Column(Modifier.padding(20.dp)) {
             HeaderText(R.string.uniq_id, true, 50)
 
             Spacer(modifier = Modifier.size(10.dp))
@@ -123,8 +123,15 @@ fun SettingsScreen (onClickBack: () -> Unit, onClickAbout: () -> Unit, viewModel
 
             Spacer(modifier = Modifier.size(10.dp))
 
-            OutlinedButton(onClick = { viewModel.updateUserName(updateUsername)
-                viewModel.updateCardDetails(cardNumber = updateCardNumber, cardName = updateCardName, cardExpiry = updateCardExpiry, cardCvv = updateCardCvv)}) {
+            OutlinedButton(onClick = {
+                viewModel.updateUserName(updateUsername)
+                viewModel.updateCardDetails(
+                    cardNumber = updateCardNumber,
+                    cardName = updateCardName,
+                    cardExpiry = updateCardExpiry,
+                    cardCvv = updateCardCvv
+                )
+            }) {
                 HeaderText(R.string.update_info, false, 20)
             }
         }

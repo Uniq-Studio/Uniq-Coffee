@@ -27,18 +27,22 @@ import org.uniqstudio.uniqcoffee.ui.TopAppBar
 fun CoffeeSelectionApp(
     onClickCoffee: () -> Unit,
     onClickBack: () -> Unit,
-    viewModel: OrderViewModel) {
-    CoffeeSelectionScreen(CoffeeDataSource().loadCoffee(),
+    viewModel: OrderViewModel
+) {
+    CoffeeSelectionScreen(
+        CoffeeDataSource().loadCoffee(),
         onClickCoffee = onClickCoffee,
         onClickBack = onClickBack,
-        viewModel)
+        viewModel
+    )
 }
 
 @Composable
-fun CoffeeSelectionScreen( coffeeList: List<Coffee>,
-                           onClickCoffee: () -> Unit,
-                           onClickBack: () -> Unit,
-                           viewModel: OrderViewModel
+fun CoffeeSelectionScreen(
+    coffeeList: List<Coffee>,
+    onClickCoffee: () -> Unit,
+    onClickBack: () -> Unit,
+    viewModel: OrderViewModel
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -74,16 +78,18 @@ fun CoffeeCard(
     ) {
         Card(
             onClick =
-                {viewModel.updateCoffeeSelectionScreen(
-                    selectedCoffee = coffee.titleResourceId,
-                    price = coffee.price,
-                    image = coffee.imageResourceId,
-                    description = coffee.descriptionResourceId,
-                    milkType = coffee.milkTypeResourceId,
-                    milkDescription = coffee.milkDescriptionResourceId,
-                    kcal = coffee.kcal
-                )
-                onClick()}
+                {
+                    viewModel.updateCoffeeSelectionScreen(
+                        selectedCoffee = coffee.titleResourceId,
+                        price = coffee.price,
+                        image = coffee.imageResourceId,
+                        description = coffee.descriptionResourceId,
+                        milkType = coffee.milkTypeResourceId,
+                        milkDescription = coffee.milkDescriptionResourceId,
+                        kcal = coffee.kcal
+                    )
+                    onClick()
+                }
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally

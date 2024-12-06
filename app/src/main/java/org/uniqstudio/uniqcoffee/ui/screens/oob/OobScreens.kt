@@ -11,7 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 
-enum class UniqCoffeeScreen(@StringRes val title: Int){
+enum class UniqCoffeeScreen(@StringRes val title: Int) {
     Welcome(R.string.welcome),
     Name(R.string.user_name),
     Payment(R.string.preferred_payment),
@@ -24,7 +24,6 @@ fun OutOfBoxApp(
     viewModel: OrderViewModel,
     launchApp: () -> Unit
 ) {
-    val uiState by viewModel.uiState.collectAsState()
     NavHost(
         navController = navController,
         startDestination = UniqCoffeeScreen.Welcome.name
@@ -45,7 +44,7 @@ fun OutOfBoxApp(
                 viewModel
             )
         }
-        composable(route = UniqCoffeeScreen.Payment.name){
+        composable(route = UniqCoffeeScreen.Payment.name) {
             UserInputScreen(
                 R.string.preferred_payment,
                 false,

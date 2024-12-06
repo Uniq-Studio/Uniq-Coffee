@@ -33,53 +33,54 @@ fun CoffeeDetailsScreen(
     onClick: () -> Unit
 ) {
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(40.dp)
             .verticalScroll(rememberScrollState()),
         contentAlignment = Alignment.Center
     ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                HeaderText(title, true, 60)
-                Text(
-                    "$$price",
-                    fontSize = 20.sp
-                )
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            HeaderText(title, true, 60)
+            Text(
+                "$$price",
+                fontSize = 20.sp
+            )
 
-                Spacer(modifier = Modifier.padding(20.dp))
+            Spacer(modifier = Modifier.padding(20.dp))
 
-                Image(painter = painterResource(image), contentDescription = stringResource(title))
-                DescriptionText(description)
-                HiddenDetailsBox(
-                    R.string.milk_type,
-                    milkType,
-                    false,
-                    milkDescription
-                )
-                HiddenDetailsBox(
-                    R.string.kcal,
-                    kcal,
-                    true,
-                    R.string.kcal_info
-                )
-                Spacer(modifier = Modifier.padding(20.dp))
+            Image(painter = painterResource(image), contentDescription = stringResource(title))
+            DescriptionText(description)
+            HiddenDetailsBox(
+                R.string.milk_type,
+                milkType,
+                false,
+                milkDescription
+            )
+            HiddenDetailsBox(
+                R.string.kcal,
+                kcal,
+                true,
+                R.string.kcal_info
+            )
+            Spacer(modifier = Modifier.padding(20.dp))
 
-            }
         }
+    }
     BottomBarButton(R.string.add_to_cart, onClick)
 }
 
 @Preview
 @Composable
-fun CoffeeDetailsScreenPreview(){
-        CoffeeDetailsScreen(
-            R.string.espresso,
-            2.99,
-            R.drawable.espresso,
-            R.string.espresso_description,
-            R.string.milk_semi,
-            R.string.milk_semi_description,
-            95,
-            {}
-        )
+fun CoffeeDetailsScreenPreview() {
+    CoffeeDetailsScreen(
+        R.string.espresso,
+        2.99,
+        R.drawable.espresso,
+        R.string.espresso_description,
+        R.string.milk_semi,
+        R.string.milk_semi_description,
+        95,
+        {}
+    )
 }
 

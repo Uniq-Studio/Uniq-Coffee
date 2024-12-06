@@ -25,22 +25,22 @@ fun AboutCreatorScreenApp(onClickBack: () -> Unit) {
         TopAppBar(R.string.about, onClickBack)
     }
 
-        PersonalInfo(
-            R.drawable.user_profile,
-            R.string.full_name,
-            R.string.title,
-            Modifier
-        )
+    PersonalInfo(
+        R.drawable.user_profile,
+        R.string.full_name,
+        R.string.title,
+        Modifier
+    )
 
-        SocialInfo(
-            R.string.number,
-            R.string.socials,
-            R.string.email
-        )
+    SocialInfo(
+        R.string.number,
+        R.string.socials,
+        R.string.email
+    )
 }
 
 @Composable
-fun PersonalInfo (profilePicX: Int, fullName: Int, title: Int, modifier: Modifier){
+fun PersonalInfo(profilePicX: Int, fullName: Int, title: Int, modifier: Modifier) {
     Column(
         //Placing the view in the center, lifting it up a bit with bottom padding
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -70,7 +70,7 @@ fun PersonalInfo (profilePicX: Int, fullName: Int, title: Int, modifier: Modifie
 }
 
 @Composable
-fun SocialInfo (phoneNumber: Int, socialHandle: Int, emailAddress: Int){
+fun SocialInfo(phoneNumber: Int, socialHandle: Int, emailAddress: Int) {
     Column(
         //Placing view at bottom middle
         horizontalAlignment = Alignment.CenterHorizontally,

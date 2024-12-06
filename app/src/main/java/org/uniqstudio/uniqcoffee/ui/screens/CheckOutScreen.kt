@@ -59,45 +59,51 @@ fun SelectedCoffeeCard(
     onClickBack: () -> Unit,
     freeCoffees: Int,
     viewModel: OrderViewModel
-    ){
+) {
 
-        Column {
-            TopAppBar(R.string.payment, onClickBack)
+    Column {
+        TopAppBar(R.string.payment, onClickBack)
 
-            Column(modifier = Modifier.padding(25.dp)) {
-                Spacer(modifier = Modifier.padding(10.dp))
+        Column(modifier = Modifier.padding(25.dp)) {
+            Spacer(modifier = Modifier.padding(10.dp))
 
-                Card(
-                    modifier = Modifier.height(100.dp)
-                ) {
-                    Row {
-                        Image(
-                            painter = painterResource(image),
-                            contentDescription = stringResource(title),
-                            modifier = Modifier
-                                .size(100.dp)
-                                .padding(5.dp)
+            Card(
+                modifier = Modifier.height(100.dp)
+            ) {
+                Row {
+                    Image(
+                        painter = painterResource(image),
+                        contentDescription = stringResource(title),
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(5.dp)
+                    )
+                    Column(modifier = Modifier.weight(1f)) {
+                        Spacer(Modifier.padding(top = 5.dp))
+                        TextBoxed(title, true, 30)
+                        Spacer(modifier = Modifier.weight(1f))
+                        Text(
+                            text = "$$price",
+                            fontSize = 20.sp,
+                            modifier = Modifier.padding(bottom = 10.dp)
                         )
-                        Column(modifier = Modifier.weight(1f)) {
-                            Spacer(Modifier.padding(top = 5.dp))
-                            TextBoxed(title, true, 30)
-                            Spacer(modifier = Modifier.weight(1f))
-                            Text(
-                                text = "$$price",
-                                fontSize = 20.sp,
-                                modifier = Modifier.padding(bottom = 10.dp)
-                            )
-                        }
                     }
                 }
             }
         }
+    }
     PaymentPanel(onClick, onClickGPay, onClickFree, freeCoffees, viewModel)
 }
 
 
 @Composable
-fun PaymentPanel(onClickCard: () -> Unit, onClickGPay: () -> Unit, onClickFree: () -> Unit,freeCoffees: Int, viewModel: OrderViewModel){
+fun PaymentPanel(
+    onClickCard: () -> Unit,
+    onClickGPay: () -> Unit,
+    onClickFree: () -> Unit,
+    freeCoffees: Int,
+    viewModel: OrderViewModel
+) {
     Box(
         contentAlignment = Alignment.BottomCenter
     ) {
@@ -148,24 +154,26 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
                 if (expanded) {
                     OutlinedTextField(
                         value = cardNumber,
-                        onValueChange = {cardNumber = it},
+                        onValueChange = { cardNumber = it },
                         label = { Text(stringResource(R.string.card_number)) },
                         singleLine = true,
                         keyboardOptions = (KeyboardOptions.Default.copy(
                             keyboardType = KeyboardType.Number,
-                            imeAction = ImeAction.Next)),
+                            imeAction = ImeAction.Next
+                        )),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(5.dp)
                     )
                     OutlinedTextField(
                         value = cardName,
-                        onValueChange = {cardName = it},
+                        onValueChange = { cardName = it },
                         label = { Text(stringResource(R.string.card_name)) },
                         singleLine = true,
                         keyboardOptions = (KeyboardOptions.Default.copy(
                             keyboardType = KeyboardType.Text,
-                            imeAction = ImeAction.Next)),
+                            imeAction = ImeAction.Next
+                        )),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(5.dp)
@@ -174,12 +182,13 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
                     Row {
                         OutlinedTextField(
                             value = cardExpiry,
-                            onValueChange = {cardExpiry = it},
+                            onValueChange = { cardExpiry = it },
                             label = { Text(stringResource(R.string.card_expiry)) },
                             singleLine = true,
                             keyboardOptions = (KeyboardOptions.Default.copy(
                                 keyboardType = KeyboardType.Number,
-                                imeAction = ImeAction.Next)),
+                                imeAction = ImeAction.Next
+                            )),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(5.dp)
@@ -187,12 +196,13 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
                         )
                         OutlinedTextField(
                             value = cardCvv,
-                            onValueChange = {cardCvv = it},
+                            onValueChange = { cardCvv = it },
                             label = { Text(stringResource(R.string.card_cvv)) },
                             singleLine = true,
                             keyboardOptions = (KeyboardOptions.Default.copy(
                                 keyboardType = KeyboardType.Number,
-                                imeAction = ImeAction.Done)),
+                                imeAction = ImeAction.Done
+                            )),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(5.dp)
@@ -200,8 +210,14 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
                         )
                         OutlinedButton(
                             onClick = {
-                                viewModel.updateCardDetails(cardNumber, cardName, cardExpiry, cardCvv)
-                                onClick()},
+                                viewModel.updateCardDetails(
+                                    cardNumber,
+                                    cardName,
+                                    cardExpiry,
+                                    cardCvv
+                                )
+                                onClick()
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(start = 5.dp, top = 15.dp, bottom = 5.dp, end = 5.dp)
@@ -216,11 +232,11 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
                     }
 
 
-                    }
                 }
             }
         }
     }
+}
 
 @Composable
 fun OtherPaymentPanel(@StringRes title: Int, onClick: () -> Unit) {
@@ -233,7 +249,8 @@ fun OtherPaymentPanel(@StringRes title: Int, onClick: () -> Unit) {
         FilledTonalButton(
             onClick = onClick,
             shape = MaterialTheme.shapes.extraSmall,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(75.dp)
         ) {
             TextBoxed(title, true, 20)
@@ -246,5 +263,5 @@ fun OtherPaymentPanel(@StringRes title: Int, onClick: () -> Unit) {
 @Composable
 fun CheckoutScreenPreview() {
 //SelectedCoffeeCard(R.drawable.espresso, R.string.espresso, R.string.espresso_description, 2.99, {})
-    PaymentPanel({},{},{},1,viewModel())
+    PaymentPanel({}, {}, {}, 1, viewModel())
 }

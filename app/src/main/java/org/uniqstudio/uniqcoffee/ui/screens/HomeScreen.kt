@@ -59,7 +59,7 @@ fun HomeScreenApp(
             }
             Spacer(modifier = Modifier.size(100.dp))
             StampCard(currentStamp, totalStamp)
-            if(freeCoffees > 0){
+            if (freeCoffees > 0) {
                 TextBoxed(R.string.free_coffee, true, 15)
             }
             Spacer(modifier = Modifier.size(100.dp))
@@ -86,14 +86,17 @@ fun StampCard(currentStamp: Int, totalStamp: Int) {
             Spacer(modifier = Modifier.size(10.dp))
             TextBoxed(R.string.stamp_card, true, 20)
 
-            Spacer(modifier = Modifier.size(10.dp)
-                .weight(1f))
+            Spacer(
+                modifier = Modifier
+                    .size(10.dp)
+                    .weight(1f)
+            )
 
             Text(
                 text = "$currentStamp/$totalStamp",
                 style = MaterialTheme.typography.headlineLarge,
                 fontSize = 20.sp
-             )
+            )
 
             Spacer(modifier = Modifier.size(10.dp))
 
@@ -103,7 +106,8 @@ fun StampCard(currentStamp: Int, totalStamp: Int) {
 
         LinearProgressIndicator(
             progress = { currentStamp.toFloat() / totalStamp.toFloat() },
-            modifier = Modifier.heightIn(50.dp)
+            modifier = Modifier
+                .heightIn(50.dp)
                 .fillMaxWidth()
                 .padding(10.dp)
         )

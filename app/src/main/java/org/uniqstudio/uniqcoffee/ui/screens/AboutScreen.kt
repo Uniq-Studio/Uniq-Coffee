@@ -14,7 +14,7 @@ import org.uniqstudio.uniqcoffee.ui.TopAppBar
 import org.uniqstudio.uniqcoffee.R
 
 @Composable
-fun AboutScreenApp(onClickBack: () -> Unit, onClickAboutCreator: () -> Unit){
+fun AboutScreenApp(onClickBack: () -> Unit, onClickAboutCreator: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -24,7 +24,8 @@ fun AboutScreenApp(onClickBack: () -> Unit, onClickAboutCreator: () -> Unit){
         ) {
             Spacer(Modifier.size(20.dp))
             Column(
-                Modifier.padding(start = 20.dp, end = 20.dp)
+                Modifier
+                    .padding(start = 20.dp, end = 20.dp)
                     .verticalScroll(rememberScrollState())
             ) {
                 HeaderText((R.string.about_app_title), true, 45)

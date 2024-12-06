@@ -19,9 +19,15 @@ import org.uniqstudio.uniqcoffee.ui.screens.HeaderText
 import org.uniqstudio.uniqcoffee.R
 
 @Composable
-fun DialogScreen(@StringRes title: Int, textSize: Int, @StringRes subtitle: Int, onClickNext: () -> Unit){
+fun DialogScreen(
+    @StringRes title: Int,
+    textSize: Int,
+    @StringRes subtitle: Int,
+    onClickNext: () -> Unit
+) {
     Column(
-        Modifier.fillMaxWidth()
+        Modifier
+            .fillMaxWidth()
             .padding(20.dp),
         verticalArrangement = Arrangement.Center
     ) {
@@ -41,21 +47,23 @@ fun DialogScreen(@StringRes title: Int, textSize: Int, @StringRes subtitle: Int,
                 Image(
                     painter = painterResource(R.drawable.broken_arrow_right),
                     contentDescription = null,
-                    modifier = Modifier.padding(15.dp)
+                    modifier = Modifier
+                        .padding(15.dp)
                         .size(150.dp)
                 )
             }
         }
     }
 }
+
 @Preview
 @Composable
-fun WelcomeScreenPreview(){
-    DialogScreen(R.string.welcome,45, R.string.app_name, {})
+fun WelcomeScreenPreview() {
+    DialogScreen(R.string.welcome, 45, R.string.app_name, {})
 }
 
 @Preview
 @Composable
-fun SetUpScreenPreview(){
-    DialogScreen(R.string.uniq_setup_done,25, R.string.thank_you, {})
+fun SetUpScreenPreview() {
+    DialogScreen(R.string.uniq_setup_done, 25, R.string.thank_you, {})
 }

@@ -20,7 +20,8 @@ class OrderViewModel : ViewModel() {
     fun updateCurrentStamp(newCurrentStamp: Int) {
         _uiState.value = _uiState.value.copy(currentStamp = newCurrentStamp)
         if (_uiState.value.currentStamp >= _uiState.value.totalStamp) {
-            _uiState.value = _uiState.value.copy(currentStamp = _uiState.value.currentStamp - _uiState.value.totalStamp )
+            _uiState.value =
+                _uiState.value.copy(currentStamp = _uiState.value.currentStamp - _uiState.value.totalStamp)
             gainFreeCoffee()
         }
     }
@@ -37,18 +38,38 @@ class OrderViewModel : ViewModel() {
         _uiState.value = _uiState.value.copy(FTSUCompleted = true)
     }
 
-    fun updateCoffeeSelectionScreen(@StringRes selectedCoffee: Int, price: Double, @DrawableRes image: Int, @StringRes description: Int, @StringRes milkType: Int,@StringRes milkDescription: Int, kcal: Int) {
-        _uiState.value = _uiState.value.copy(selectedCoffee = selectedCoffee,
+    fun updateCoffeeSelectionScreen(
+        @StringRes selectedCoffee: Int,
+        price: Double,
+        @DrawableRes image: Int,
+        @StringRes description: Int,
+        @StringRes milkType: Int,
+        @StringRes milkDescription: Int,
+        kcal: Int
+    ) {
+        _uiState.value = _uiState.value.copy(
+            selectedCoffee = selectedCoffee,
             selectedCoffeePrice = price,
             selectedCoffeeImage = image,
             selectedCoffeeDescription = description,
             selectedCoffeeMilkType = milkType,
             selectedCoffeeMilkTypeDescription = milkDescription,
-            selectedCoffeeKcal = kcal)
+            selectedCoffeeKcal = kcal
+        )
     }
 
-    fun updateCardDetails(cardNumber: String, cardName: String, cardExpiry: String, cardCvv: String) {
-        _uiState.value = _uiState.value.copy(cardNumber = cardNumber, cardName = cardName, cardExpiry = cardExpiry, cardCvv = cardCvv)
+    fun updateCardDetails(
+        cardNumber: String,
+        cardName: String,
+        cardExpiry: String,
+        cardCvv: String
+    ) {
+        _uiState.value = _uiState.value.copy(
+            cardNumber = cardNumber,
+            cardName = cardName,
+            cardExpiry = cardExpiry,
+            cardCvv = cardCvv
+        )
 
     }
 

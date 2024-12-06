@@ -45,12 +45,12 @@ import org.uniqstudio.uniqcoffee.R
 
 @Composable
 fun HeaderText(@StringRes text: Int, bold: Boolean, size: Int) {
-    if (!bold){
-    Text(
-        text = stringResource(text),
-        style = MaterialTheme.typography.headlineLarge,
-        fontSize = size.sp,
-    )
+    if (!bold) {
+        Text(
+            text = stringResource(text),
+            style = MaterialTheme.typography.headlineLarge,
+            fontSize = size.sp,
+        )
     } else {
         Text(
             text = stringResource(text),
@@ -63,7 +63,7 @@ fun HeaderText(@StringRes text: Int, bold: Boolean, size: Int) {
 
 @Composable
 fun HeaderText(text: String, bold: Boolean, size: Int) {
-    if (!bold){
+    if (!bold) {
         Text(
             text = text,
             style = MaterialTheme.typography.headlineLarge,
@@ -88,7 +88,7 @@ fun DescriptionText(@StringRes text: Int) {
 }
 
 @Composable
-fun TextBoxed(@StringRes text: Int, bold: Boolean, size: Int){
+fun TextBoxed(@StringRes text: Int, bold: Boolean, size: Int) {
     if (!bold) {
         Text(
             text = stringResource(text),
@@ -122,7 +122,8 @@ fun CoffeeButton(
             Image(
                 painter = painterResource(image),
                 contentDescription = stringResource(text),
-                modifier = modifier.size(100.dp)
+                modifier = modifier
+                    .size(100.dp)
                     .padding(15.dp)
             )
             Text(
@@ -140,10 +141,11 @@ fun HiddenDetailsBox(
     @StringRes type: Int,
     justNumbers: Boolean,
     @StringRes description: Int
-){
+) {
     var expanded: Boolean by remember { mutableStateOf(false) }
     Card(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(5.dp)
     ) {
         Column(
@@ -155,56 +157,58 @@ fun HiddenDetailsBox(
                     )
                 )
         ) {
-                Row()
-                {
-                    Spacer(modifier = Modifier.size(10.dp))
+            Row()
+            {
+                Spacer(modifier = Modifier.size(10.dp))
 
-                    TextBoxed(title, true, 20)
+                TextBoxed(title, true, 20)
 
-                    Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
 
-                    if (!justNumbers){
+                if (!justNumbers) {
                     TextBoxed(type, false, 20)
+                } else {
+                    Text(
+                        "$type",
+                        fontSize = 20.sp,
+                        modifier = Modifier.padding(top = 5.dp)
+                    )
+                }
+
+                if (description != 0) {
+                    if (expanded) {
+                        Icon(
+                            Icons.Filled.KeyboardArrowUp,
+                            contentDescription = null,
+                            modifier = Modifier.clickable(onClick = { expanded = !expanded })
+                        )
                     } else {
-                        Text("$type",
-                            fontSize = 20.sp,
-                            modifier = Modifier.padding(top = 5.dp)
+                        Icon(
+                            Icons.Filled.KeyboardArrowDown,
+                            contentDescription = null,
+                            modifier = Modifier.clickable(onClick = { expanded = !expanded })
                         )
                     }
+                }
+            }
 
-                    if (description != 0) {
-                        if (expanded) {
-                            Icon(
-                                Icons.Filled.KeyboardArrowUp,
-                                contentDescription = null,
-                                modifier = Modifier.clickable(onClick = { expanded = !expanded })
-                            )
-                        } else {
-                            Icon(
-                                Icons.Filled.KeyboardArrowDown,
-                                contentDescription = null,
-                                modifier = Modifier.clickable(onClick = { expanded = !expanded })
-                            )
-                        }
-                    }
+            if (expanded) {
+                Row {
+                    Text(
+                        stringResource(description), modifier = Modifier.padding(10.dp)
+                    )
                 }
 
-                if (expanded) {
-                    Row {
-                        Text(stringResource(description)
-                            , modifier = Modifier.padding(10.dp))
-                    }
-
-                }
             }
         }
     }
+}
 
 
 @Composable
-fun InputField(@StringRes text: Int, size: Int, justNumbers: Boolean){
+fun InputField(@StringRes text: Int, size: Int, justNumbers: Boolean) {
     var keyboardType: KeyboardType
-    if (justNumbers){
+    if (justNumbers) {
         keyboardType = KeyboardType.Number
     } else {
         keyboardType = KeyboardType.Text
@@ -212,12 +216,13 @@ fun InputField(@StringRes text: Int, size: Int, justNumbers: Boolean){
     var inputtedText by remember { mutableStateOf("") }
     OutlinedTextField(
         value = inputtedText,
-        onValueChange = {inputtedText = it},
+        onValueChange = { inputtedText = it },
         label = { Text(stringResource(text)) },
         singleLine = true,
         keyboardOptions = (KeyboardOptions.Default.copy(
             keyboardType = keyboardType,
-            imeAction = ImeAction.Next)),
+            imeAction = ImeAction.Next
+        )),
         modifier = Modifier
             .fillMaxWidth()
             .padding(size.dp)
@@ -225,30 +230,32 @@ fun InputField(@StringRes text: Int, size: Int, justNumbers: Boolean){
 }
 
 @Composable
-fun InputFieldRow(@StringRes expiryDate: Int,@StringRes cvvText: Int, size: Int){
+fun InputFieldRow(@StringRes expiryDate: Int, @StringRes cvvText: Int, size: Int) {
     var inputtedText1 by remember { mutableStateOf("") }
     var inputtedText2 by remember { mutableStateOf("") }
     Row {
         OutlinedTextField(
             value = inputtedText1,
-            onValueChange = {inputtedText1 = it},
+            onValueChange = { inputtedText1 = it },
             label = { Text(stringResource(expiryDate)) },
             singleLine = true,
             keyboardOptions = (KeyboardOptions.Default.copy(
                 keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Next)),
+                imeAction = ImeAction.Next
+            )),
             modifier = Modifier
                 .weight(1f)
                 .padding(size.dp),
         )
         OutlinedTextField(
             value = inputtedText2,
-            onValueChange = {inputtedText2 = it},
+            onValueChange = { inputtedText2 = it },
             label = { Text(stringResource(cvvText)) },
             singleLine = true,
             keyboardOptions = (KeyboardOptions.Default.copy(
                 keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Done)),
+                imeAction = ImeAction.Done
+            )),
             modifier = Modifier
                 .weight(1f)
                 .padding(size.dp)
@@ -257,7 +264,7 @@ fun InputFieldRow(@StringRes expiryDate: Int,@StringRes cvvText: Int, size: Int)
 }
 
 @Composable
-fun BottomBarButton(@StringRes text: Int, onClick: () -> Unit){
+fun BottomBarButton(@StringRes text: Int, onClick: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.BottomCenter
@@ -265,7 +272,8 @@ fun BottomBarButton(@StringRes text: Int, onClick: () -> Unit){
         FilledTonalButton(
             onClick = onClick,
             shape = MaterialTheme.shapes.extraSmall,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(75.dp)
         ) {
             TextBoxed(text, true, 20)
@@ -276,48 +284,48 @@ fun BottomBarButton(@StringRes text: Int, onClick: () -> Unit){
 
 @Preview
 @Composable
-fun HeaderTextPreview(){
+fun HeaderTextPreview() {
     HeaderText(R.string.welcome_back, false, 30)
 }
 
 @Preview
 @Composable
-fun DescriptionTextPreview(){
+fun DescriptionTextPreview() {
     DescriptionText(R.string.espresso_description)
 }
 
 @Preview
 @Composable
-fun TextBoxedPreview(){
+fun TextBoxedPreview() {
     TextBoxed(R.string.espresso, true, 20)
 }
 
 @Preview
 @Composable
-fun CoffeeButtonPreview(){
+fun CoffeeButtonPreview() {
     CoffeeButton(R.drawable.espresso, R.string.espresso, {})
 }
 
 @Preview
 @Composable
-fun HiddenDetailsBoxPreview(){
+fun HiddenDetailsBoxPreview() {
     HiddenDetailsBox(R.string.milk_type, R.string.milk_semi, false, R.string.milk_semi)
 }
 
 @Preview
 @Composable
-fun InputFieldPreview(){
+fun InputFieldPreview() {
     InputField(R.string.card_number, 5, true)
 }
 
 @Preview
 @Composable
-fun InputFieldRowPreview(){
+fun InputFieldRowPreview() {
     InputFieldRow(R.string.card_expiry, R.string.card_cvv, 6)
 }
 
 @Preview
 @Composable
-fun BottomBarButtonPreview(){
+fun BottomBarButtonPreview() {
     BottomBarButton(R.string.add_to_cart, {})
 }

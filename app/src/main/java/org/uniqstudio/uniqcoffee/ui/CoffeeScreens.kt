@@ -21,7 +21,7 @@ import org.uniqstudio.uniqcoffee.ui.screens.SettingsScreen
 import org.uniqstudio.uniqcoffee.ui.screens.oob.OutOfBoxApp
 
 
-enum class UniqCoffeeScreen(@StringRes val title: Int){
+enum class UniqCoffeeScreen(@StringRes val title: Int) {
     OOB(R.string.welcome),
     Start(R.string.app_name),
     Settings(R.string.settings),
@@ -50,7 +50,7 @@ fun UniqCoffeeApp(
                 viewModel = viewModel,
                 launchApp = {
                     navController.navigate(UniqCoffeeScreen.Start.name)
-            })
+                })
         }
         composable(route = UniqCoffeeScreen.Start.name) {
             HomeScreenApp(
@@ -71,7 +71,7 @@ fun UniqCoffeeApp(
             )
         }
 
-        composable(route = UniqCoffeeScreen.Settings.name){
+        composable(route = UniqCoffeeScreen.Settings.name) {
             SettingsScreen(
                 onClickBack = { navController.navigateUp() },
                 onClickAbout = { navController.navigate(UniqCoffeeScreen.About.name) },
@@ -137,7 +137,8 @@ fun UniqCoffeeApp(
                         popUpTo(navController.graph.startDestinationId) {
                             inclusive = false
                         }
-                    }},
+                    }
+                },
 
                 {
                     viewModel.useFreeCoffee()
@@ -148,11 +149,11 @@ fun UniqCoffeeApp(
                     }
                 },
 
-                { navController.navigateUp()},
+                { navController.navigateUp() },
                 uiState.freeCoffees,
-                    viewModel
-                )
-            }
+                viewModel
+            )
+        }
 
         composable(route = UniqCoffeeScreen.Complete.name) {
             OrderCompletedView(

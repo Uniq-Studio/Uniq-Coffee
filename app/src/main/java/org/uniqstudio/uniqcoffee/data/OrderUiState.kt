@@ -23,4 +23,4 @@ data class OrderUiState(
     var cardName: String = "Mr Uniq C Studio",
     var cardExpiry: String = "12/26",
     var cardCvv: String = "009",
-    )
+)

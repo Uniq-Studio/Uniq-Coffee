@@ -1,6 +1,5 @@
 package org.uniqstudio.uniqcoffee.ui.screens
 
-import android.R.attr.onClick
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import org.uniqstudio.uniqcoffee.R
 
 @Composable
-fun CheckImage(){
+fun CheckImage() {
     Image(
         painter = painterResource(R.drawable.ic_task_completed),
         contentDescription = null
@@ -27,7 +26,7 @@ fun CheckImage(){
 }
 
 @Composable
-fun CompletedText(@StringRes thankYou: Int, @StringRes inProgress: Int){
+fun CompletedText(@StringRes thankYou: Int, @StringRes inProgress: Int) {
     Text(
         stringResource(thankYou),
         modifier = Modifier.padding(top = 24.dp, bottom = 8.dp),
@@ -41,7 +40,7 @@ fun CompletedText(@StringRes thankYou: Int, @StringRes inProgress: Int){
 }
 
 @Composable
-fun OrderCompletedView(@StringRes completed: Int, @StringRes praise: Int, onClick: () -> Unit){
+fun OrderCompletedView(@StringRes completed: Int, @StringRes praise: Int, onClick: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center

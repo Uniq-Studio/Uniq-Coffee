@@ -32,7 +32,9 @@ import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 
 @Composable
-fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () -> Unit, viewModel: OrderViewModel){
+fun UserInputScreen(
+    @StringRes title: Int, stageOne: Boolean, onClickNext: () -> Unit, viewModel: OrderViewModel
+) {
 
     val uiState by viewModel.uiState.collectAsState()
 
@@ -44,9 +46,9 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
     var cardExpiry by remember { mutableStateOf(uiState.cardExpiry) }
     var cardCvv by remember { mutableStateOf(uiState.cardCvv) }
     Column(
-        Modifier.fillMaxWidth()
-            .padding(20.dp),
-        verticalArrangement = Arrangement.Center
+        Modifier
+            .fillMaxWidth()
+            .padding(20.dp), verticalArrangement = Arrangement.Center
     ) {
         HeaderText(R.string.setup_uniq_id, false, 30)
         HeaderText(title, true, 20)
@@ -59,8 +61,7 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
                 label = { Text(stringResource(R.string.user_name)) },
                 singleLine = true,
                 keyboardOptions = (KeyboardOptions.Default.copy(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Done
+                    keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
                 )),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -75,8 +76,7 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
                 keyboardOptions = (KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Next
                 )),
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.size(10.dp))
@@ -89,8 +89,7 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
                 keyboardOptions = (KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Next
                 )),
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.size(10.dp))
 
@@ -125,29 +124,28 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
         Spacer(modifier = Modifier.size(100.dp))
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End
         ) {
             IconButton(
                 onClick = {
                     if (stageOne) {
                         viewModel.updateUserName(username)
-                    }
-                    else {
+                    } else {
                         viewModel.updateCardDetails(
                             cardNumber = cardNumber,
                             cardName = cardName,
                             cardExpiry = cardExpiry,
-                            cardCvv = cardCvv)
+                            cardCvv = cardCvv
+                        )
                     }
                     onClickNext()
-                          },
-                modifier = Modifier.size(150.dp)
+                }, modifier = Modifier.size(150.dp)
             ) {
                 Image(
                     painter = painterResource(R.drawable.broken_arrow_right),
                     contentDescription = null,
-                    modifier = Modifier.padding(15.dp)
+                    modifier = Modifier
+                        .padding(15.dp)
                         .size(150.dp)
                 )
             }
@@ -157,11 +155,12 @@ fun UserInputScreen(@StringRes title :Int, stageOne: Boolean, onClickNext: () ->
 
 @Preview
 @Composable
-fun NameScreenPreview(){
+fun NameScreenPreview() {
     UserInputScreen(R.string.what_is_your_name, true, {}, viewModel())
 }
+
 @Preview
 @Composable
-fun CardScreenPreview(){
+fun CardScreenPreview() {
     UserInputScreen(R.string.preferred_payment, false, {}, viewModel())
 }

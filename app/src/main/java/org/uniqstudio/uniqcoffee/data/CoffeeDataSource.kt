@@ -97,9 +97,7 @@ class CoffeeDataSource {
                 price = 2.45,
                 kcal = 10
             )
-            )
-
-
+        )
 
 
     }
