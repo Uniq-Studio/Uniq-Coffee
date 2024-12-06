@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.uniqstudio.uniqcoffee.R
+import org.uniqstudio.uniqcoffee.ui.screens.AboutCreatorScreenApp
 import org.uniqstudio.uniqcoffee.ui.screens.AboutScreenApp
 import org.uniqstudio.uniqcoffee.ui.screens.CoffeeDetailsScreen
 import org.uniqstudio.uniqcoffee.ui.screens.CoffeeSelectionApp
@@ -25,6 +26,7 @@ enum class UniqCoffeeScreen(@StringRes val title: Int){
     Start(R.string.app_name),
     Settings(R.string.settings),
     About(R.string.about),
+    AboutCreator(R.string.about_creator),
     Selection(R.string.select_coffee),
     Details(R.string.coffee_details),
     CheckOut(R.string.payment),
@@ -78,6 +80,12 @@ fun UniqCoffeeApp(
         }
         composable(route = UniqCoffeeScreen.About.name) {
             AboutScreenApp(
+                onClickBack = { navController.navigateUp() },
+                onClickAboutCreator = { navController.navigate(UniqCoffeeScreen.AboutCreator.name) }
+            )
+        }
+        composable(route = UniqCoffeeScreen.AboutCreator.name) {
+            AboutCreatorScreenApp(
                 onClickBack = { navController.navigateUp() }
             )
         }
