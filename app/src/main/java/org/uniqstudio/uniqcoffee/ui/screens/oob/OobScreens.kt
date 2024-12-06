@@ -4,7 +4,6 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -22,7 +21,7 @@ enum class UniqCoffeeScreen(@StringRes val title: Int){
 @Composable
 fun OutOfBoxApp(
     navController: NavHostController = rememberNavController(),
-    viewModel: OrderViewModel = viewModel(),
+    viewModel: OrderViewModel,
     launchApp: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -42,14 +41,16 @@ fun OutOfBoxApp(
             UserInputScreen(
                 R.string.what_is_your_name,
                 true,
-                { navController.navigate(UniqCoffeeScreen.Payment.name) }
+                { navController.navigate(UniqCoffeeScreen.Payment.name) },
+                viewModel
             )
         }
         composable(route = UniqCoffeeScreen.Payment.name){
             UserInputScreen(
                 R.string.preferred_payment,
                 false,
-                { navController.navigate(UniqCoffeeScreen.SetupDone.name) }
+                { navController.navigate(UniqCoffeeScreen.SetupDone.name) },
+                viewModel
             )
         }
         composable(route = UniqCoffeeScreen.SetupDone.name) {
@@ -57,7 +58,10 @@ fun OutOfBoxApp(
                 R.string.uniq_setup_done,
                 25,
                 R.string.thank_you,
-                { launchApp() }
+                {
+                    viewModel.firstTimeSetUpComplete()
+                    launchApp()
+                }
             )
         }
     }

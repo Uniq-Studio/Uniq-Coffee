@@ -4,6 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 data class OrderUiState(
+    var FTSUCompleted: Boolean = false,
+
     var userName: String = "",
     var currentStamp: Int = 0,
     var totalStamp: Int = 10,

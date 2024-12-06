@@ -21,6 +21,10 @@ class OrderViewModel : ViewModel() {
         _uiState.value = _uiState.value.copy(currentStamp = newCurrentStamp)
     }
 
+    fun firstTimeSetUpComplete() {
+        _uiState.value = _uiState.value.copy(FTSUCompleted = true)
+    }
+
     fun updateCoffeeSelectionScreen(@StringRes selectedCoffee: Int, price: Double, @DrawableRes image: Int, @StringRes description: Int, @StringRes milkType: Int, kcal: Int) {
         _uiState.value = _uiState.value.copy(selectedCoffee = selectedCoffee,
             selectedCoffeePrice = price,

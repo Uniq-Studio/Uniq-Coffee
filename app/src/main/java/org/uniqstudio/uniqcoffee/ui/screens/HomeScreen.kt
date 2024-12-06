@@ -30,6 +30,7 @@ fun HomeScreenApp(
     @StringRes welcomeBackText: Int,
     userNameText: String,
 
+
     //Stamp Card Variables
     currentStamp: Int,
     totalStamp: Int,
@@ -53,6 +54,7 @@ fun HomeScreenApp(
             Column {
                 HeaderText(welcomeBackText, false, 55)
                 HeaderText(userNameText, true, 50)
+
             }
             Spacer(modifier = Modifier.size(100.dp))
             StampCard(currentStamp, totalStamp)

@@ -4,9 +4,6 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -40,22 +37,24 @@ fun UniqCoffeeApp(
     viewModel: OrderViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    var FTSU by remember { mutableStateOf(true) }
+    var FTSU = uiState.FTSUCompleted
 
     NavHost(
         navController = navController,
-        if (FTSU) UniqCoffeeScreen.OOB.name else UniqCoffeeScreen.Start.name,
+        if (!FTSU) UniqCoffeeScreen.OOB.name else UniqCoffeeScreen.Start.name,
     ) {
         composable(route = UniqCoffeeScreen.OOB.name) {
-            OutOfBoxApp(launchApp = {
-                FTSU = false
-                navController.navigate(UniqCoffeeScreen.Start.name)
+            OutOfBoxApp(
+                viewModel = viewModel,
+                launchApp = {
+                    navController.navigate(UniqCoffeeScreen.Start.name)
             })
         }
         composable(route = UniqCoffeeScreen.Start.name) {
             HomeScreenApp(
                 R.string.welcome_back,
                 uiState.userName,
+
                 uiState.currentStamp,
                 uiState.totalStamp,
 
