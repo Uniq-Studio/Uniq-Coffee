@@ -110,6 +110,8 @@ fun UniqCoffeeApp(
                 uiState.selectedCoffeeDescription,
 
                 uiState.selectedCoffeeMilkType,
+                uiState.selectedCoffeeMilkTypeDescription,
+
                 uiState.selectedCoffeeKcal,
 
                 { navController.navigate(UniqCoffeeScreen.CheckOut.name) }

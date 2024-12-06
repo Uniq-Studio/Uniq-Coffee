@@ -8,6 +8,7 @@ data class Coffee (
     @StringRes val titleResourceId: Int,
     @StringRes val descriptionResourceId: Int,
     @StringRes val milkTypeResourceId: Int,
+    @StringRes val milkDescriptionResourceId: Int,
     val price: Double,
     val kcal: Int
 )

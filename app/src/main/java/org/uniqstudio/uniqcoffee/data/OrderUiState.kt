@@ -16,6 +16,7 @@ data class OrderUiState(
     @DrawableRes var selectedCoffeeImage: Int = 0,
     @StringRes var selectedCoffeeDescription: Int = 0,
     @StringRes var selectedCoffeeMilkType: Int = 0,
+    @StringRes var selectedCoffeeMilkTypeDescription: Int = 0,
     var selectedCoffeeKcal: Int = 0,
 
     var cardNumber: String = "1234567890123456",

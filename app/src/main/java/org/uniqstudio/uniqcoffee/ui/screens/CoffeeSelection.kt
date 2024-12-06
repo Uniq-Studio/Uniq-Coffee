@@ -80,6 +80,7 @@ fun CoffeeCard(
                     image = coffee.imageResourceId,
                     description = coffee.descriptionResourceId,
                     milkType = coffee.milkTypeResourceId,
+                    milkDescription = coffee.milkDescriptionResourceId,
                     kcal = coffee.kcal
                 )
                 onClick()}
@@ -109,6 +110,7 @@ fun CoffeeSelectionScreenPreview() {
             titleResourceId = R.string.espresso,
             descriptionResourceId = R.string.espresso_description,
             milkTypeResourceId = R.string.milk_none,
+            milkDescriptionResourceId = 0,
             price = 2.99,
             kcal = 100
         ),

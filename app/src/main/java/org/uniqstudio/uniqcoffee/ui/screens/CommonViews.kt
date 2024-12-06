@@ -172,10 +172,20 @@ fun HiddenDetailsBox(
                         )
                     }
 
-                    if (expanded) {
-                        Icon(Icons.Filled.KeyboardArrowUp, contentDescription = null, modifier = Modifier.clickable( onClick = {expanded = !expanded}))
-                    } else {
-                        Icon(Icons.Filled.KeyboardArrowDown, contentDescription = null, modifier = Modifier.clickable( onClick = {expanded = !expanded}))
+                    if (description != 0) {
+                        if (expanded) {
+                            Icon(
+                                Icons.Filled.KeyboardArrowUp,
+                                contentDescription = null,
+                                modifier = Modifier.clickable(onClick = { expanded = !expanded })
+                            )
+                        } else {
+                            Icon(
+                                Icons.Filled.KeyboardArrowDown,
+                                contentDescription = null,
+                                modifier = Modifier.clickable(onClick = { expanded = !expanded })
+                            )
+                        }
                     }
                 }
 

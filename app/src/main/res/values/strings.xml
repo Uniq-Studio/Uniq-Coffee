@@ -64,9 +64,11 @@
     <string name="milk_type">Milk Type</string>
 
     <string name="milk_semi">Semi-Skimmed Milk</string>
+    <string name="milk_semi_description">Semi-skimmed milk has no more than 0.5% of fat</string>
     <string name="milk_skimmed">Skimmed Milk</string>
+    <string name="milk_skimmed_description">Skimmed Milk has around 1.5 ~ 1.8% of fat</string>
     <string name="milk_whole">Whole Milk</string>
-    <string name="milk_oat">Oat Milk</string>
+    <string name="milk_whole_description">Whole Milk has around 3.5% of fat</string>
     <string name="milk_none">No Milk</string>
 
     <string name="add_to_cart">Add to Cart</string>
