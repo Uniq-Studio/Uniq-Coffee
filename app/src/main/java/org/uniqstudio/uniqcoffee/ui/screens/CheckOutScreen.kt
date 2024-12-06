@@ -48,54 +48,91 @@ import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
+//Checkout screen displays the coffee the user wishes to purchase
+//At the bottom of the screen has a card input field to pay by card
+//Pay by Google Pay is also an option for the user (Glorified next button)
+//And if the user has a free coffee it will show them if they can redeem it
+
 @Composable
 fun SelectedCoffeeCard(
     @DrawableRes image: Int,
     @StringRes title: Int,
     price: Double,
+
     onClick: () -> Unit,
     onClickGPay: () -> Unit,
     onClickFree: () -> Unit,
     onClickBack: () -> Unit,
+
     freeCoffees: Int,
     viewModel: OrderViewModel
 ) {
 
     Column {
-        TopAppBar(R.string.payment, onClickBack)
+        TopAppBar(
+            title = R.string.payment,
+            onClickBack = onClickBack
+        )
 
-        Column(modifier = Modifier.padding(25.dp)) {
-            Spacer(modifier = Modifier.padding(10.dp))
+        SelectedCoffeeChip(
+            image = image,
+            title = title,
+            price = price
+        )
+    }
+    PaymentPanel(
+        onClickCard = onClick,
+        onClickGPay = onClickGPay,
+        onClickFree = onClickFree,
+        freeCoffees = freeCoffees,
+        viewModel = viewModel
+    )
+}
 
-            Card(
-                modifier = Modifier.height(100.dp)
-            ) {
-                Row {
-                    Image(
-                        painter = painterResource(image),
-                        contentDescription = stringResource(title),
-                        modifier = Modifier
-                            .size(100.dp)
-                            .padding(5.dp)
+//Displays the coffee the user wishes to purchase
+@Composable
+fun SelectedCoffeeChip(
+    @DrawableRes image: Int,
+    @StringRes title: Int,
+    price: Double,
+){
+    Column(modifier = Modifier.padding(25.dp)) {
+        Card(
+            modifier = Modifier.height(100.dp)
+        ) {
+            Row {
+                Image(
+                    painter = painterResource(image),
+                    contentDescription = stringResource(title),
+                    modifier = Modifier
+                        .size(100.dp)
+                        .padding(5.dp)
+                )
+                Column(modifier = Modifier.weight(1f)) {
+                    Spacer(Modifier.padding(top = 5.dp))
+
+                    TextBoxed(
+                        text = title,
+                        bold = true,
+                        size = 30
                     )
-                    Column(modifier = Modifier.weight(1f)) {
-                        Spacer(Modifier.padding(top = 5.dp))
-                        TextBoxed(title, true, 30)
-                        Spacer(modifier = Modifier.weight(1f))
-                        Text(
-                            text = "$$price",
-                            fontSize = 20.sp,
-                            modifier = Modifier.padding(bottom = 10.dp)
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Text(
+                        text = "$$price",
+                        fontSize = 20.sp,
+                        modifier = Modifier.padding(bottom = 10.dp
                         )
-                    }
+                    )
                 }
             }
         }
     }
-    PaymentPanel(onClick, onClickGPay, onClickFree, freeCoffees, viewModel)
+
 }
 
-
+//Displays the payment options for the user
 @Composable
 fun PaymentPanel(
     onClickCard: () -> Unit,
@@ -117,8 +154,11 @@ fun PaymentPanel(
     }
 }
 
+//This one hold the Card Input Field
 @Composable
-fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
+fun FakeCardEntryPanel(
+    onClick: () -> Unit,
+    viewModel: OrderViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     var expanded by remember { mutableStateOf(true) }
 
@@ -238,8 +278,12 @@ fun FakeCardEntryPanel(onClick: () -> Unit, viewModel: OrderViewModel) {
     }
 }
 
+//This one is just a button, you can specify what it can do
+//For example, pay with Google Pay or Free Coffee Redemption
 @Composable
-fun OtherPaymentPanel(@StringRes title: Int, onClick: () -> Unit) {
+fun OtherPaymentPanel(
+    @StringRes title: Int,
+    onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -262,6 +306,5 @@ fun OtherPaymentPanel(@StringRes title: Int, onClick: () -> Unit) {
 @Preview
 @Composable
 fun CheckoutScreenPreview() {
-//SelectedCoffeeCard(R.drawable.espresso, R.string.espresso, R.string.espresso_description, 2.99, {})
     PaymentPanel({}, {}, {}, 1, viewModel())
 }

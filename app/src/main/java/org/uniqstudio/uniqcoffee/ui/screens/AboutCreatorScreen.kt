@@ -19,6 +19,10 @@ import androidx.compose.ui.unit.sp
 import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
+//Used from Business Card App
+//Displays the creator's information in the center of the screen
+//and displays their socials and email address at the bottom
+
 @Composable
 fun AboutCreatorScreenApp(onClickBack: () -> Unit) {
     Column {
@@ -26,16 +30,16 @@ fun AboutCreatorScreenApp(onClickBack: () -> Unit) {
     }
 
     PersonalInfo(
-        R.drawable.user_profile,
-        R.string.full_name,
-        R.string.title,
-        Modifier
+        profilePicX = R.drawable.user_profile,
+        fullName =  R.string.full_name,
+        title = R.string.title,
+        modifier = Modifier
     )
 
     SocialInfo(
-        R.string.number,
-        R.string.socials,
-        R.string.email
+        phoneNumber = R.string.number,
+        socialHandle = R.string.socials,
+        emailAddress = R.string.email
     )
 }
 
@@ -51,17 +55,17 @@ fun PersonalInfo(profilePicX: Int, fullName: Int, title: Int, modifier: Modifier
             //Profile picture with a smaller size
             painter = painterResource(profilePicX),
             contentDescription = null,
-            modifier.size(150.dp)
+            modifier = modifier.size(150.dp)
         )
         Text(
             //Displays name in very thin font
-            stringResource(fullName),
+            text = stringResource(fullName),
             fontSize = 50.sp,
             fontWeight = FontWeight.ExtraLight
         )
         Text(
             //Displays title in thick, light gray font
-            stringResource(title),
+            text =stringResource(title),
             fontSize = 15.sp,
             fontWeight = FontWeight.ExtraBold,
             color = Color.LightGray
@@ -84,11 +88,11 @@ fun SocialInfo(phoneNumber: Int, socialHandle: Int, emailAddress: Int) {
                 modifier = Modifier.padding(bottom = 20.dp)
             ) {
                 Image(
-                    painterResource(R.drawable.broken_phone),
+                    painter = painterResource(R.drawable.broken_phone),
                     contentDescription = null
                 )
                 Text(
-                    stringResource(phoneNumber),
+                    text = stringResource(phoneNumber),
                     modifier = Modifier.padding(start = 20.dp)
                 )
             }
@@ -98,11 +102,11 @@ fun SocialInfo(phoneNumber: Int, socialHandle: Int, emailAddress: Int) {
                 modifier = Modifier.padding(bottom = 20.dp)
             ) {
                 Image(
-                    painterResource(R.drawable.broken_share),
+                    painter = painterResource(R.drawable.broken_share),
                     contentDescription = null
                 )
                 Text(
-                    stringResource(socialHandle),
+                    text = stringResource(socialHandle),
                     modifier = Modifier.padding(start = 20.dp)
                 )
             }
@@ -112,16 +116,14 @@ fun SocialInfo(phoneNumber: Int, socialHandle: Int, emailAddress: Int) {
                 modifier = Modifier.padding(bottom = 20.dp)
             ) {
                 Image(
-                    painterResource(R.drawable.broken_mail),
+                    painter = painterResource(R.drawable.broken_mail),
                     contentDescription = null
                 )
                 Text(
-                    stringResource(emailAddress),
+                    text = stringResource(emailAddress),
                     modifier = Modifier.padding(start = 20.dp)
                 )
             }
-
         }
-
     }
 }

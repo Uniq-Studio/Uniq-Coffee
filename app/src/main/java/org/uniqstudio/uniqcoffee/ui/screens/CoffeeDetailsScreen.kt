@@ -21,16 +21,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.uniqstudio.uniqcoffee.R
 
+//This screen gives the user more details about the coffee they selected.
+//It also has a button to add the coffee to the cart.
+//It also has drop down boxes to show the details of the coffee.
+
 @Composable
 fun CoffeeDetailsScreen(
     @StringRes title: Int,
     price: Double,
+
     @DrawableRes image: Int,
+
     @StringRes description: Int,
+
     @StringRes milkType: Int,
     @StringRes milkDescription: Int,
     kcal: Int,
-    onClick: () -> Unit
+
+    onClickAdd: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -40,7 +48,12 @@ fun CoffeeDetailsScreen(
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            HeaderText(title, true, 60)
+            HeaderText(
+                text = title,
+                bold = true,
+                size = 60
+            )
+
             Text(
                 "$$price",
                 fontSize = 20.sp
@@ -50,23 +63,27 @@ fun CoffeeDetailsScreen(
 
             Image(painter = painterResource(image), contentDescription = stringResource(title))
             DescriptionText(description)
+
             HiddenDetailsBox(
-                R.string.milk_type,
-                milkType,
-                false,
-                milkDescription
+                title = R.string.milk_type,
+                type = milkType,
+                justNumbers = false,
+                description = milkDescription
             )
             HiddenDetailsBox(
-                R.string.kcal,
-                kcal,
-                true,
-                R.string.kcal_info
+                title = R.string.kcal,
+                type = kcal,
+                justNumbers = true,
+                description = R.string.kcal_info
             )
             Spacer(modifier = Modifier.padding(20.dp))
 
         }
     }
-    BottomBarButton(R.string.add_to_cart, onClick)
+    BottomBarButton(
+        text = R.string.add_to_cart,
+        onClick = onClickAdd
+    )
 }
 
 @Preview

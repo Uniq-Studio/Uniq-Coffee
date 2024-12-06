@@ -13,12 +13,18 @@ import androidx.compose.ui.unit.dp
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 import org.uniqstudio.uniqcoffee.R
 
+//About screen for the app explaining what the app does and what it can do
+//Displays a list of resources used and a disclaimer
+
 @Composable
 fun AboutScreenApp(onClickBack: () -> Unit, onClickAboutCreator: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        TopAppBar(R.string.about, onClickBack)
+        TopAppBar(
+            title = R.string.about,
+            onClickBack = onClickBack
+        )
         Column(
             Modifier.padding(bottom = 20.dp)
         ) {
@@ -28,17 +34,41 @@ fun AboutScreenApp(onClickBack: () -> Unit, onClickAboutCreator: () -> Unit) {
                     .padding(start = 20.dp, end = 20.dp)
                     .verticalScroll(rememberScrollState())
             ) {
-                HeaderText((R.string.about_app_title), true, 45)
+                //About the app
+                HeaderText(
+                    text = (R.string.about_app_title),
+                    bold = true,
+                    size = 45
+                )
                 DescriptionText(R.string.about_app_description)
+
                 Spacer(Modifier.size(20.dp))
-                HeaderText((R.string.resources_used), true, 45)
+
+                //Resources Used
+                HeaderText(
+                    text = (R.string.resources_used),
+                    bold = true,
+                    size = 45)
                 DescriptionText(R.string.resources_used_description)
+
                 Spacer(Modifier.size(20.dp))
-                HeaderText((R.string.disclaimer_title), true, 45)
+
+                //Disclaimer
+                HeaderText(
+                    text = (R.string.disclaimer_title),
+                    bold = true,
+                    size = 45
+                )
                 DescriptionText(R.string.disclaimer_description)
+
+                //Making sure the button does not cover up any text
                 Spacer(Modifier.size(50.dp))
             }
         }
     }
-    BottomBarButton(R.string.about_creator, onClickAboutCreator)
+    //Takes you to the About Creator Screen
+    BottomBarButton(
+        text = R.string.about_creator,
+        onClick = onClickAboutCreator
+    )
 }

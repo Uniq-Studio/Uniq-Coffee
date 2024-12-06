@@ -3,6 +3,9 @@ package org.uniqstudio.uniqcoffee.data
 import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.model.Coffee
 
+//Creating a list of Coffee objects and having them in a list for the following screens can
+//pull the data from them
+
 class CoffeeDataSource {
     fun loadCoffee(): List<Coffee> {
         return listOf(

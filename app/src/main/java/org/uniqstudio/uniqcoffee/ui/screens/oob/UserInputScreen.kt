@@ -31,20 +31,26 @@ import org.uniqstudio.uniqcoffee.ui.screens.HeaderText
 import org.uniqstudio.uniqcoffee.R
 import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 
+//This screen collect the user's name and card information
+//Stage one is the name and stage two is the card information
+
 @Composable
 fun UserInputScreen(
     @StringRes title: Int, stageOne: Boolean, onClickNext: () -> Unit, viewModel: OrderViewModel
 ) {
-
+    //Accessing the view model
     val uiState by viewModel.uiState.collectAsState()
 
     var stageOne by remember { mutableStateOf(stageOne) }
+
+    //Collection of user data
     var username by remember { mutableStateOf(uiState.userName) }
 
     var cardNumber by remember { mutableStateOf(uiState.cardNumber) }
     var cardName by remember { mutableStateOf(uiState.cardName) }
     var cardExpiry by remember { mutableStateOf(uiState.cardExpiry) }
     var cardCvv by remember { mutableStateOf(uiState.cardCvv) }
+
     Column(
         Modifier
             .fillMaxWidth()
@@ -54,7 +60,11 @@ fun UserInputScreen(
         HeaderText(title, true, 20)
 
         Spacer(modifier = Modifier.size(50.dp))
+
+        //Choosing between getting the name and card information
+
         if (stageOne) {
+            //Text field for the user name
             OutlinedTextField(
                 value = username,
                 onValueChange = { username = it },
@@ -67,7 +77,11 @@ fun UserInputScreen(
                     .fillMaxWidth()
                     .padding(5.dp)
             )
-        } else {
+        }
+        else
+        {
+            //4 text fields for the card information
+            //Number
             OutlinedTextField(
                 value = cardNumber,
                 onValueChange = { cardNumber = it },
@@ -81,6 +95,7 @@ fun UserInputScreen(
 
             Spacer(modifier = Modifier.size(10.dp))
 
+            //Card Name
             OutlinedTextField(
                 value = cardName,
                 onValueChange = { cardName = it },
@@ -93,7 +108,9 @@ fun UserInputScreen(
             )
             Spacer(modifier = Modifier.size(10.dp))
 
+            //Making the last two text fields side by side
             Row {
+                //Expiry
                 OutlinedTextField(
                     value = cardExpiry,
                     onValueChange = { cardExpiry = it },
@@ -106,7 +123,10 @@ fun UserInputScreen(
                         .fillMaxWidth()
                         .weight(1f)
                 )
+
                 Spacer(modifier = Modifier.size(10.dp))
+
+                //CVV
                 OutlinedTextField(
                     value = cardCvv,
                     onValueChange = { cardCvv = it },
@@ -121,13 +141,15 @@ fun UserInputScreen(
                 )
             }
         }
+
         Spacer(modifier = Modifier.size(100.dp))
 
-        Row(
-            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End
-        ) {
+        //Next button aligned to the right
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
             IconButton(
                 onClick = {
+                    //Depending on what stage,
+                    //it will update the viewmodel with the name or card data
                     if (stageOne) {
                         viewModel.updateUserName(username)
                     } else {

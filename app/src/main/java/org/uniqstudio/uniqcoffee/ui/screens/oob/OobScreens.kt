@@ -2,8 +2,6 @@ package org.uniqstudio.uniqcoffee.ui.screens.oob
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +16,9 @@ enum class UniqCoffeeScreen(@StringRes val title: Int) {
     SetupDone(R.string.uniq_setup_done),
 }
 
+//Out of box experience is designed to gain the user's info
+//Once complete, it takes them to the main app
+
 @Composable
 fun OutOfBoxApp(
     navController: NavHostController = rememberNavController(),
@@ -30,34 +31,34 @@ fun OutOfBoxApp(
     ) {
         composable(route = UniqCoffeeScreen.Welcome.name) {
             DialogScreen(
-                R.string.welcome,
-                45,
-                R.string.app_name,
-                { navController.navigate(UniqCoffeeScreen.Name.name) }
+                title = R.string.welcome,
+                textSize = 45,
+                subtitle = R.string.app_name,
+                onClickNext = { navController.navigate(UniqCoffeeScreen.Name.name) }
             )
         }
         composable(route = UniqCoffeeScreen.Name.name) {
             UserInputScreen(
-                R.string.what_is_your_name,
-                true,
-                { navController.navigate(UniqCoffeeScreen.Payment.name) },
-                viewModel
+                title = R.string.what_is_your_name,
+                stageOne = true,
+                onClickNext = { navController.navigate(UniqCoffeeScreen.Payment.name) },
+                viewModel = viewModel
             )
         }
         composable(route = UniqCoffeeScreen.Payment.name) {
             UserInputScreen(
-                R.string.preferred_payment,
-                false,
-                { navController.navigate(UniqCoffeeScreen.SetupDone.name) },
-                viewModel
+                title = R.string.preferred_payment,
+                stageOne = false,
+                onClickNext = { navController.navigate(UniqCoffeeScreen.SetupDone.name) },
+                viewModel = viewModel
             )
         }
         composable(route = UniqCoffeeScreen.SetupDone.name) {
             DialogScreen(
-                R.string.uniq_setup_done,
-                25,
-                R.string.thank_you,
-                {
+                title = R.string.uniq_setup_done,
+                textSize = 25,
+                subtitle = R.string.thank_you,
+                onClickNext = {
                     viewModel.firstTimeSetUpComplete()
                     launchApp()
                 }

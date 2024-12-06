@@ -23,6 +23,8 @@ import org.uniqstudio.uniqcoffee.model.Coffee
 import org.uniqstudio.uniqcoffee.ui.OrderViewModel
 import org.uniqstudio.uniqcoffee.ui.TopAppBar
 
+//This screen collects all the different coffees and displays them in a grid.
+
 @Composable
 fun CoffeeSelectionApp(
     onClickCoffee: () -> Unit,
@@ -30,10 +32,10 @@ fun CoffeeSelectionApp(
     viewModel: OrderViewModel
 ) {
     CoffeeSelectionScreen(
-        CoffeeDataSource().loadCoffee(),
+        coffeeList = CoffeeDataSource().loadCoffee(),
         onClickCoffee = onClickCoffee,
         onClickBack = onClickBack,
-        viewModel
+        viewModel = viewModel
     )
 }
 
@@ -49,23 +51,28 @@ fun CoffeeSelectionScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TopAppBar(R.string.select_coffee, onClickBack = onClickBack)
+        //Create Scrollable Grid of coffees
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier.fillMaxSize(),
         ) {
+            //Load the coffees from our list
             items(coffeeList) { coffee ->
                 CoffeeCard(
                     modifier = Modifier
                         .size(width = 200.dp, height = 300.dp),
                     coffee = coffee,
                     onClick = onClickCoffee,
-                    viewModel
+                    viewModel = viewModel
                 )
             }
         }
     }
 }
 
+
+//This Displays the image of the coffee and the name of the coffee.
+//OnClick will add the coffee that it is to the ViewModel
 @Composable
 fun CoffeeCard(
     modifier: Modifier = Modifier,
@@ -99,7 +106,11 @@ fun CoffeeCard(
                     contentDescription = stringResource(coffee.titleResourceId),
                     modifier = Modifier.padding(10.dp)
                 )
-                TextBoxed(coffee.titleResourceId, true, 25)
+                TextBoxed(
+                    text = coffee.titleResourceId,
+                    bold = true,
+                    size = 25
+                )
             }
 
         }

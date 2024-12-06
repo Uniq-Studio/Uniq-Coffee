@@ -18,6 +18,12 @@ import androidx.compose.ui.unit.dp
 import org.uniqstudio.uniqcoffee.ui.screens.HeaderText
 import org.uniqstudio.uniqcoffee.R
 
+//Full screen welcome screen with a next button,
+//great for dialogs and full screen info for the user.
+
+//Title is for the top of the screen, subtitle is for the bottom of the title
+//Text size is for the font size of the title depending how long your title is
+
 @Composable
 fun DialogScreen(
     @StringRes title: Int,
@@ -31,15 +37,19 @@ fun DialogScreen(
             .padding(20.dp),
         verticalArrangement = Arrangement.Center
     ) {
+        //Main content of the screen
+        //Large title Screen
         HeaderText(title, false, textSize)
         HeaderText(subtitle, true, 60)
 
         Spacer(modifier = Modifier.size(150.dp))
 
+        //Holding the button and placing it out to the right
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ) {
+            //Next button
             IconButton(
                 onClick = onClickNext,
                 modifier = Modifier.size(150.dp)
