@@ -12,8 +12,8 @@ data class OrderUiState(
 
     //User data
     //Variable that stores the user name, and coffee they gain
-    var userName: String = "Aaron",
-    var currentStamp: Int = 9,
+    var userName: String = "",
+    var currentStamp: Int = 0,
     var totalStamp: Int = 10,
     var freeCoffees: Int = 0,
 
@@ -27,8 +27,8 @@ data class OrderUiState(
     var selectedCoffeeKcal: Int = 0,
 
     //Fake Credit card information
-    var cardNumber: String = "1234567890123456",
-    var cardName: String = "Mr Uniq C Studio",
-    var cardExpiry: String = "12/26",
-    var cardCvv: String = "009",
+    var cardNumber: String = "",
+    var cardName: String = "",
+    var cardExpiry: String = "",
+    var cardCvv: String = "",
 )

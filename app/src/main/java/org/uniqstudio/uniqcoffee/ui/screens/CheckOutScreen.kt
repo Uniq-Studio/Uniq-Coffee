@@ -160,7 +160,7 @@ fun FakeCardEntryPanel(
     onClick: () -> Unit,
     viewModel: OrderViewModel) {
     val uiState by viewModel.uiState.collectAsState()
-    var expanded by remember { mutableStateOf(true) }
+    var expanded by remember { mutableStateOf(false) }
 
     var cardNumber by remember { mutableStateOf(uiState.cardNumber) }
     var cardName by remember { mutableStateOf(uiState.cardName) }
