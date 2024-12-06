@@ -62,7 +62,7 @@ fun SelectedCoffeeCard(
     ){
 
         Column {
-            TopAppBar(R.string.payment, 2.5f, true, onClickBack)
+            TopAppBar(R.string.payment, onClickBack)
 
             Column(modifier = Modifier.padding(25.dp)) {
                 Spacer(modifier = Modifier.padding(10.dp))

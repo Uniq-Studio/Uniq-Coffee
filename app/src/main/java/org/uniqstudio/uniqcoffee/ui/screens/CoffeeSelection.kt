@@ -44,7 +44,7 @@ fun CoffeeSelectionScreen( coffeeList: List<Coffee>,
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TopAppBar(R.string.select_coffee, 3f,true, onClickBack = onClickBack)
+        TopAppBar(R.string.select_coffee, onClickBack = onClickBack)
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier.fillMaxSize(),

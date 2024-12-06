@@ -22,7 +22,7 @@ import org.uniqstudio.uniqcoffee.ui.TopAppBar
 @Composable
 fun AboutCreatorScreenApp(onClickBack: () -> Unit) {
     Column {
-        TopAppBar(R.string.about, 2f, true, onClickBack)
+        TopAppBar(R.string.about, onClickBack)
     }
 
         PersonalInfo(

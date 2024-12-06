@@ -18,7 +18,7 @@ fun AboutScreenApp(onClickBack: () -> Unit, onClickAboutCreator: () -> Unit){
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        TopAppBar(R.string.about, 2f, true, onClickBack)
+        TopAppBar(R.string.about, onClickBack)
         Column(
             Modifier.padding(bottom = 20.dp)
         ) {

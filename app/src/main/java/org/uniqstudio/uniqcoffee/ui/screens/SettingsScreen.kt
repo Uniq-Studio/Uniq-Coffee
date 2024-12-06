@@ -41,7 +41,7 @@ fun SettingsScreen (onClickBack: () -> Unit, onClickAbout: () -> Unit, viewModel
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        TopAppBar(R.string.settings, 2.25f, true, onClickBack)
+        TopAppBar(R.string.settings, onClickBack)
 
         Column (Modifier.padding(20.dp)) {
             HeaderText(R.string.uniq_id, true, 50)
