@@ -61,7 +61,7 @@ class CoffeeDataSource {
                 milkTypeResourceId = R.string.milk_semi,
                 milkDescriptionResourceId = R.string.milk_semi_description,
                 price = 3.05,
-                kcal = 10
+                kcal = 113
             ),
             Coffee(
                 imageResourceId = R.drawable.mocha,
@@ -70,7 +70,7 @@ class CoffeeDataSource {
                 milkTypeResourceId = R.string.milk_whole,
                 milkDescriptionResourceId = R.string.milk_whole_description,
                 price = 2.55,
-                kcal = 15
+                kcal = 231
             ),
 
             Coffee(
