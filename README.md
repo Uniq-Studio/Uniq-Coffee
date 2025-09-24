@@ -21,7 +21,8 @@ Meet **Uniq Coffee**, the simplified mobile app for buying your next caffeinated
 
 ## 🚀 Deployment
 Download Uniq Coffee!
-[Download for Android](https://github.com/Uniq-Studio/Uniq-Coffee/releases/download/1.0/Uniq-Coffee.apk)
+
+  > [Download for Android](https://github.com/Uniq-Studio/Uniq-Coffee/releases/download/1.0/Uniq-Coffee.apk)
 
 ## 📬 Contact
 - **Email:** aaron.hamil5@gmail.com
